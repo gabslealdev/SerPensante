@@ -1,8 +1,8 @@
 using System;
 
-namespace SerPensante.Models;
+namespace SerPensanteApi.Models;
 
-class Professor {
+public class Professor {
     public int Matricula { get; set; }
     public string Nome { get; set; }
     public DateTime Datanasc { get; set; }

@@ -1,6 +1,6 @@
-namespace SerPensante.Models;
+namespace SerPensanteApi.Models;
 
-class Aluno {
+public class Aluno {
     public int Matricula { get; set; }
     public string Nome { get; set; }
     public DateTime Datanasc { get; set; }

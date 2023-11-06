@@ -1,6 +1,6 @@
-namespace SerPensante.Models;
+namespace SerPensanteApi.Models;
 
-class Materia{
+public class Materia{
     public int Id { get; set; }
     public string Nome { get; set; }
     public int Tipo { get; set; }
