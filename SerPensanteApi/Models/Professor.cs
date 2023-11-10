@@ -10,4 +10,5 @@ public class Professor {
     public string  Email { get; set; }
     public bool Ativo { get; set; }
     public string PasswordHash { get; set; }
+    public List<Aula> Aulas { get; set; }
 }

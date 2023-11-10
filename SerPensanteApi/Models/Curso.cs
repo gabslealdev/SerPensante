@@ -9,4 +9,5 @@ public class Curso{
     public bool Ativo { get; set; }
     public DateTime CriadoEm { get; set; }
     public int CodMateria { get; set; }
+    public List<Aula> Aulas { get; set; }
 }
