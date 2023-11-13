@@ -24,8 +24,7 @@ public class MateriaMap : IEntityTypeConfiguration<Materia>
             .HasColumnName("Tipo")
             .HasColumnType("TINYINT")
             .HasMaxLength(20);
-    }3
-
+    }
 
 
 
