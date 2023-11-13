@@ -35,10 +35,17 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
             .HasMaxLength(80);
         
         builder.HasIndex(x => x.Email, "IX_ALUNO_EMAIL").IsUnique();
-        
-            
-            
 
+        builder.Property(x => x.Ativo)
+            .HasColumnType("BIT")
+            .HasColumnName("Ativo")
+            .HasDefaultValue(0);
+
+        builder.Property(x => x.PasswordHash)
+            .IsRequired()
+            .HasColumnName("PasswordHash")
+            .HasColumnType("NVARCHAR")
+            .HasMaxLength(160);
 
     }
 }
