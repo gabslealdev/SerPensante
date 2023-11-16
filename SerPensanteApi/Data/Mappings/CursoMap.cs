@@ -4,55 +4,52 @@ using SerPensanteApi.Models;
 
 namespace SerPensanteApi.Data.Mappings;
 
-public class ProfessorMap : IEntityTypeConfiguration<Professor>
+public class CursoMap : IEntityTypeConfiguration<Curso>
 {
-    public void Configure(EntityTypeBuilder<Professor> builder)
+    public void Configure(EntityTypeBuilder<Curso> builder)
     {
-        builder.ToTable("Professor"); 
+        builder.ToTable("Materia");
 
-        builder.HasKey(x => x.Matricula);
+        builder.HasKey(x => x.Id);
         // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
 
         builder.Property(x => x.Nome)
             .IsRequired()
             .HasColumnName("Nome")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(60);
-
-        builder.Property(x => x.Datanasc)
+            .HasMaxLength(80);
+        
+        builder.Property(x => x.Duracao)
             .IsRequired()
-            .HasColumnName("Datanasc")
+            .HasColumnName("Duracao")
             .HasColumnType("DATETIME");
         
-        builder.Property(x => x.Telefone)
+        builder.Property(x => x.Descricao)
             .IsRequired()
-            .HasColumnName("Telefone")
-            .HasColumnType("NVARCHAR")
-            .HasMaxLength(20);
+            .HasColumnName("Descricao")
+            .HasColumnType("TEXT");
         
-        builder.Property(x => x.Email)
-            .IsRequired()
-            .HasColumnName("Email")
+        builder.Property(x => x.LinkUrl)
+            .HasColumnName("linkURL")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(80);
-
+        
         builder.Property(x => x.Ativo)
             .HasColumnType("BIT")
             .HasColumnName("Ativo")
             .HasDefaultValue(0);
-
-        builder.Property(x => x.PasswordHash)
+        
+        builder.Property(x => x.CriadoEm)
             .IsRequired()
-            .HasColumnName("PasswordHash")
-            .HasColumnType("NVARCHAR")
-            .HasMaxLength(160);
+            .HasColumnName("CriadoEm")
+            .HasColumnType("DATETIME");
         
         builder.Property(x => x.Imagem)
             .HasColumnName("Imagem")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
-        
-        builder.HasIndex(x => x.Email, "IX_PROFESSOR_EMAIL").IsUnique();
+
+        builder.HasIndex(x => x.Nome, "IX_CURSO_NOME").IsUnique();
 
     }
 }

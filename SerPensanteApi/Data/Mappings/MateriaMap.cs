@@ -12,6 +12,7 @@ public class MateriaMap : IEntityTypeConfiguration<Materia>
 
         // Gerando chave primaria
         builder.HasKey(x => x.Id);
+        // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
 
         builder.Property(x => x.Nome)
             .IsRequired()

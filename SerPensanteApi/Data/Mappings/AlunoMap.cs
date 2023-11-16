@@ -10,6 +10,7 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
         builder.ToTable("Aluno"); 
 
         builder.HasKey(x => x.Matricula);
+        // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
 
         builder.Property(x => x.Nome)
             .IsRequired()
@@ -33,8 +34,6 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
             .HasColumnName("Email")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(80);
-        
-        builder.HasIndex(x => x.Email, "IX_ALUNO_EMAIL").IsUnique();
 
         builder.Property(x => x.Ativo)
             .HasColumnType("BIT")
@@ -46,6 +45,13 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
             .HasColumnName("PasswordHash")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
+        
+        builder.Property(x => x.Imagem)
+            .HasColumnName("Imagem")
+            .HasColumnType("NVARCHAR")
+            .HasMaxLength(160);
+
+        builder.HasIndex(x => x.Email, "IX_ALUNO_EMAIL").IsUnique();
 
     }
 }
