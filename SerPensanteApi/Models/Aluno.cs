@@ -9,5 +9,6 @@ public class Aluno {
     public bool Ativo { get; set; }
     public string PasswordHash { get; set; }
     public string Imagem { get; set; }
+    
 
 }

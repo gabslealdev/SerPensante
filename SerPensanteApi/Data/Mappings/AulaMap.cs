@@ -30,5 +30,15 @@ public class AulaMap : IEntityTypeConfiguration<Aula>
             .HasMaxLength(80); 
 
         builder.HasIndex(x => x.Titulo, "IX_AULA_TITULO").IsUnique();  
+
+        builder.HasOne(x => x.professor)
+            .WithMany(x => x.Aulas)
+            .HasConstraintName("FK_PROFESSOR")
+            .OnDelete(DeleteBehavior.NoAction);
+        
+        builder.HasOne(x => x.curso)
+            .WithMany(x => x.Aulas)
+            .HasConstraintName("FK_CURSO")
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

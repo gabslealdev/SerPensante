@@ -51,5 +51,11 @@ public class CursoMap : IEntityTypeConfiguration<Curso>
 
         builder.HasIndex(x => x.Nome, "IX_CURSO_NOME").IsUnique();
 
+        builder.HasOne(x => x.materia)
+            .WithMany(x => x.Cursos)
+            .HasConstraintName("FK_MATERIA")
+            .OnDelete(DeleteBehavior.NoAction);
+    
+
     }
 }

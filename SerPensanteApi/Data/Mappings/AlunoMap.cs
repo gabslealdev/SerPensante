@@ -51,7 +51,7 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
 
-        builder.HasIndex(x => x.Email, "IX_ALUNO_EMAIL").IsUnique();
+        builder.HasIndex(x => x.Email, "IX_ALUNO_EMAIL").IsUnique(); 
 
     }
 }
