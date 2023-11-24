@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SerPensanteApi.Models;
 
 namespace SerPensanteApi.Data.Mappings;
 
 public class AlunoMap : IEntityTypeConfiguration<Aluno>
 {
-    public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Aluno> builder)
+    public void Configure(EntityTypeBuilder<Aluno> builder)
     {
         builder.ToTable("Aluno"); 
 
@@ -51,7 +52,9 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
 
-        builder.HasIndex(x => x.Email, "IX_ALUNO_EMAIL").IsUnique(); 
+        builder.HasIndex(x => x.Email, "IX_ALUNO_EMAIL").IsUnique();
+
+        builder
 
     }
 }

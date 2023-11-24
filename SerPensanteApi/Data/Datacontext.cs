@@ -12,7 +12,7 @@ public class SpensanteDataContext : DbContext
     public DbSet<Professor> Professores { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-    => options.UseSqlServer("Server=localhost,1433;Database=serpensantedb;User ID=sa;Password=1q2w3e4r@#$");
+    => options.UseSqlServer("Server=localhost,1433;Database=spdatabase;User ID=sa;Password=1q2w3e4r@#$");
     
 }
 

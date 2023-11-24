@@ -10,5 +10,5 @@ public class Curso{
     public DateTime CriadoEm { get; set; }
     public Materia materia { get; set; }
     public string Imagem { get; set; }
-    public List<Aula> Aulas { get; set; }
+    public ICollection<AlunoCurso> AlunosCurso { get; set; }
 }
