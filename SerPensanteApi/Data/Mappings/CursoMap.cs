@@ -8,7 +8,7 @@ public class CursoMap : IEntityTypeConfiguration<Curso>
 {
     public void Configure(EntityTypeBuilder<Curso> builder)
     {
-        builder.ToTable("Materia");
+        builder.ToTable("Curso");
 
         builder.HasKey(x => x.Id);
         // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
@@ -43,6 +43,11 @@ public class CursoMap : IEntityTypeConfiguration<Curso>
             .IsRequired()
             .HasColumnName("CriadoEm")
             .HasColumnType("DATETIME");
+
+        builder.Property(x => x.CodMateria)
+            .IsRequired()
+            .HasColumnName("CodMateria")
+            .HasColumnType("INT");
         
         builder.Property(x => x.Imagem)
             .HasColumnName("Imagem")
@@ -51,10 +56,11 @@ public class CursoMap : IEntityTypeConfiguration<Curso>
 
         builder.HasIndex(x => x.Nome, "IX_CURSO_NOME").IsUnique();
 
-        builder.HasOne(x => x.materia)
-            .WithMany(x => x.Cursos)
-            .HasConstraintName("FK_MATERIA")
-            .OnDelete(DeleteBehavior.NoAction);
+        builder.HasOne(x => x.Materia)
+             .WithMany(x => x.Cursos)
+             .HasForeignKey(x => x.CodMateria)
+             .HasConstraintName("FK_MATERIA")
+             .OnDelete(DeleteBehavior.NoAction);
     
 
     }

@@ -8,10 +8,15 @@ public class ProfessorMap : IEntityTypeConfiguration<Professor>
 {
     public void Configure(EntityTypeBuilder<Professor> builder)
     {
+        // Criando tabela
         builder.ToTable("Professor"); 
 
+        // Propriedades
         builder.HasKey(x => x.Matricula);
-        // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
+        
+        builder.Property(x => x.Matricula)
+            .ValueGeneratedOnAdd()
+            .UseIdentityColumn(1,1);
 
         builder.Property(x => x.Nome)
             .IsRequired()
@@ -52,6 +57,7 @@ public class ProfessorMap : IEntityTypeConfiguration<Professor>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
         
+        //Index
         builder.HasIndex(x => x.Email, "IX_PROFESSOR_EMAIL").IsUnique();
 
     }

@@ -54,7 +54,5 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
 
         builder.HasIndex(x => x.Email, "IX_ALUNO_EMAIL").IsUnique();
 
-        builder
-
     }
 }

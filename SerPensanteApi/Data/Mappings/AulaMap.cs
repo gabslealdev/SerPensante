@@ -8,7 +8,7 @@ public class AulaMap : IEntityTypeConfiguration<Aula>
 {
     public void Configure(EntityTypeBuilder<Aula> builder)
     {
-        builder.ToTable("Materia");
+        builder.ToTable("Aula");
 
         builder.HasKey(x => x.Id);
         // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
@@ -31,13 +31,15 @@ public class AulaMap : IEntityTypeConfiguration<Aula>
 
         builder.HasIndex(x => x.Titulo, "IX_AULA_TITULO").IsUnique();  
 
-        builder.HasOne(x => x.professor)
+        builder.HasOne(x => x.Professor)
             .WithMany(x => x.Aulas)
+            .HasForeignKey(x => x.ProfessorId)
             .HasConstraintName("FK_PROFESSOR")
             .OnDelete(DeleteBehavior.NoAction);
         
-        builder.HasOne(x => x.curso)
+        builder.HasOne(x => x.Curso)
             .WithMany(x => x.Aulas)
+            .HasForeignKey(x => x.CursoId)
             .HasConstraintName("FK_CURSO")
             .OnDelete(DeleteBehavior.NoAction);
     }

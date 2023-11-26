@@ -11,5 +11,7 @@ public class Professor {
     public bool Ativo { get; set; }
     public string PasswordHash { get; set; }
     public string Imagem { get; set; }
+
+    
     public List<Aula> Aulas { get; set; }
 }
