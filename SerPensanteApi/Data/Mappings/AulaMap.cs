@@ -27,7 +27,12 @@ public class AulaMap : IEntityTypeConfiguration<Aula>
         builder.Property(x => x.LinkUrl)
             .HasColumnName("linkURL")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80); 
+            .HasMaxLength(80);
+        
+        builder.Property(x => x.Assistido)
+            .HasColumnType("BIT")
+            .HasColumnName("Assistido")
+            .HasDefaultValue(0);
 
         builder.HasIndex(x => x.Titulo, "IX_AULA_TITULO").IsUnique();  
 

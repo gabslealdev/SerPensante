@@ -11,6 +11,7 @@ public class Curso{
     public int CodMateria { get; set; }
     public Materia Materia { get; set; }
     public string Imagem { get; set; }
+    
     public List<Aula> Aulas { get; set; }
     public ICollection<AlunoCurso> AlunosCurso { get; set; }
 }

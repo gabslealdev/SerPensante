@@ -45,7 +45,15 @@ class Program
         // context.Cursos.Add(curso);
         // context.SaveChanges();
 
+        // using var context = new SpensanteDataContext();
+        // var aluno = new Aluno();
+        // aluno.Nome = "Rejjie Snow";
+        // aluno.Datanasc = new DateTime(1999, 03, 28);
+        // aluno.Telefone = "111942647538";
+        // aluno.Email = "rejjie.snow@gmail.com";
 
+        // context.Alunos.Add(aluno);
+        // context.SaveChanges();
 
     }
 }

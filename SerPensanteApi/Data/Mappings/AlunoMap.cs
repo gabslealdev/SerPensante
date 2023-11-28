@@ -8,10 +8,15 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
 {
     public void Configure(EntityTypeBuilder<Aluno> builder)
     {
+        // Criando tabela
         builder.ToTable("Aluno"); 
 
+        // Propriedades
         builder.HasKey(x => x.Matricula);
-        // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
+        
+        builder.Property(x => x.Matricula)
+            .ValueGeneratedOnAdd()
+            .UseIdentityColumn(1,1);
 
         builder.Property(x => x.Nome)
             .IsRequired()
@@ -52,6 +57,7 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
 
+        // Index
         builder.HasIndex(x => x.Email, "IX_ALUNO_EMAIL").IsUnique();
 
     }
