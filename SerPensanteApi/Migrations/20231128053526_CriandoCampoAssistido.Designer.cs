@@ -11,7 +11,7 @@ using SerPensanteApi.Data;
 
 namespace SerPenApi.Migrations
 {
-    [DbContext(typeof(SpensanteDataContext))]
+    [DbContext(typeof(SpenDataContext))]
     [Migration("20231128053526_CriandoCampoAssistido")]
     partial class CriandoCampoAssistido
     {

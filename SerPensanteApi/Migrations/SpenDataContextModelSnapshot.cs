@@ -10,8 +10,8 @@ using SerPensanteApi.Data;
 
 namespace SerPenApi.Migrations
 {
-    [DbContext(typeof(SpensanteDataContext))]
-    partial class SpensanteDataContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(SpenDataContext))]
+    partial class SpenDataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -229,9 +229,10 @@ namespace SerPenApi.Migrations
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("Nome");
 
-                    b.Property<byte>("Tipo")
+                    b.Property<string>("Tipo")
+                        .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("TINYINT")
+                        .HasColumnType("NVARCHAR")
                         .HasColumnName("Tipo");
 
                     b.HasKey("Id");

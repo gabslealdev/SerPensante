@@ -4,7 +4,7 @@ using SerPensanteApi.Models;
 
 namespace SerPensanteApi.Data;
 
-public class SpensanteDataContext : DbContext
+public class SpenDataContext : DbContext
 {
     public DbSet<Materia> Materias { get; set; }
     public DbSet<Aluno> Alunos { get; set; }

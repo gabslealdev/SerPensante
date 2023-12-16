@@ -12,8 +12,8 @@ using SerPensanteApi.Data;
 namespace SerPenApi.Migrations
 {
     [DbContext(typeof(SpenDataContext))]
-    [Migration("20231128054435_AdicionadoCampoAssistido")]
-    partial class AdicionadoCampoAssistido
+    [Migration("20231207152449_TrocandoTipoDoCampoMateria")]
+    partial class TrocandoTipoDoCampoMateria
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -232,9 +232,10 @@ namespace SerPenApi.Migrations
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("Nome");
 
-                    b.Property<byte>("Tipo")
+                    b.Property<string>("Tipo")
+                        .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("TINYINT")
+                        .HasColumnType("NVARCHAR")
                         .HasColumnName("Tipo");
 
                     b.HasKey("Id");

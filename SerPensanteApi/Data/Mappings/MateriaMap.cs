@@ -26,7 +26,7 @@ public class MateriaMap : IEntityTypeConfiguration<Materia>
         builder.Property(x => x.Tipo)
             .IsRequired()
             .HasColumnName("Tipo")
-            .HasColumnType("TINYINT")
+            .HasColumnType("NVARCHAR")
             .HasMaxLength(20);
         
     }

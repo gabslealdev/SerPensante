@@ -32,12 +32,15 @@ C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\SerPenApi.d
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\SerPenApi.pdb
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Humanizer.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.Identity.Client.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
@@ -48,6 +51,8 @@ C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.I
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.CodeDom.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Drawing.Common.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
@@ -88,8 +93,3 @@ C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\refint\SerP
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.pdb
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.genruntimeconfig.cache
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\ref\SerPenApi.dll
-C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Humanizer.dll
-C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Mono.TextTemplating.dll
-C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.CodeDom.dll

@@ -11,7 +11,7 @@ using SerPensanteApi.Data;
 
 namespace SerPenApi.Migrations
 {
-    [DbContext(typeof(SpensanteDataContext))]
+    [DbContext(typeof(SpenDataContext))]
     [Migration("20231128051503_ModeloInicial")]
     partial class ModeloInicial
     {
