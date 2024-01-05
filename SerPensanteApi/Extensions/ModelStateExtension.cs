@@ -10,6 +10,6 @@ public static class ModelStateExtension
         foreach(var item in modelState.Values)
             result.AddRange(item.Errors.Select(error => error.ErrorMessage));
         
-        return result;
+        return result; 
     }
 }

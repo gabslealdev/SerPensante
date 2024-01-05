@@ -47,7 +47,6 @@ public class ProfessorMap : IEntityTypeConfiguration<Professor>
             .HasDefaultValue(0);
 
         builder.Property(x => x.PasswordHash)
-            .IsRequired()
             .HasColumnName("PasswordHash")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);

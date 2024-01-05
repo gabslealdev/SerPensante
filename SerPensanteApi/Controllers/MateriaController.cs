@@ -26,7 +26,7 @@ public class MateriaController : ControllerBase
         }
     }
 
-    [HttpGet("materia/{id:int}")]
+    [HttpGet("materias/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -34,20 +34,18 @@ public class MateriaController : ControllerBase
             var materia = await context.Materias.FirstOrDefaultAsync(x => x.Id == id);
 
             if (materia == null)
-                {
-                    return NotFound();
-                }
+                return BadRequest(new ResultViewModel<Materia>("Materia não encontrada"));
 
             return Ok(new ResultViewModel<Materia>(materia));            
         }
-        catch (Exception)
+        catch
         {
             return StatusCode(500, new ResultViewModel<Materia>("Falha interna no servior"));
         }
 
     }
 
-    [HttpPost("materias")]
+    [HttpPost("materia")]
     public async Task<IActionResult> PostAsync([FromBody] EditorMateriaViewModel model, [FromServices] SpenDataContext context)
     {
         if(!ModelState.IsValid)
@@ -63,19 +61,19 @@ public class MateriaController : ControllerBase
             await context.AddAsync(materia);
             await context.SaveChangesAsync();
 
-            return Created($"materias/{materia.Id}", materia);
+            return Created($"materia/{materia.Id}", new ResultViewModel<Materia>(materia));
         }
         catch (DbUpdateException)
         {
-            return BadRequest(new ResultViewModel<List<string>>("Não foi possivel incluir a materia"));
+            return BadRequest(new ResultViewModel<Materia>("Não foi possivel incluir a materia"));
         }
-        catch (Exception)
+        catch
         {
-            return StatusCode(500, new ResultViewModel<List<string>>("Falha Interna do servidor"));
+            return StatusCode(500, new ResultViewModel<Materia>("Falha Interna do servidor"));
         }
     }
 
-    [HttpPut("materias/{id:int}")]
+    [HttpPut("materia/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] EditorMateriaViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -83,7 +81,7 @@ public class MateriaController : ControllerBase
             var materia = await context.Materias.FirstOrDefaultAsync(x => x.Id == id);
             if (materia == null)
             {
-                return NotFound();
+                return NotFound(new ResultViewModel<Materia>("Materia não encontrada"));
             }
 
             materia.Nome = model.Nome;
@@ -104,7 +102,7 @@ public class MateriaController : ControllerBase
         }
     }
 
-    [HttpDelete("materias/{id:int}")]
+    [HttpDelete("materia/{id:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -121,7 +119,7 @@ public class MateriaController : ControllerBase
 
             return Ok();
         }
-        catch (Exception)
+        catch
         {
             return StatusCode(500, new ResultViewModel<Materia>("Falha interna no servidor"));
         }
