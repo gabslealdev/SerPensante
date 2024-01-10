@@ -7,11 +7,15 @@ public class MateriaMap : IEntityTypeConfiguration<Materia>
 {
     public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Materia> builder)
     {
-        // Gerar tabela
+        // Criando tabela
         builder.ToTable("Materia");
 
-        // Gerando chave primaria
+        // Propriedades 
         builder.HasKey(x => x.Id);
+        
+        builder.Property(x => x.Id)
+            .ValueGeneratedOnAdd()
+            .UseIdentityColumn(1,1);
 
         builder.Property(x => x.Nome)
             .IsRequired()
@@ -22,7 +26,17 @@ public class MateriaMap : IEntityTypeConfiguration<Materia>
         builder.Property(x => x.Tipo)
             .IsRequired()
             .HasColumnName("Tipo")
-            .HasColumnType("TINYINT")
+            .HasColumnType("NVARCHAR")
             .HasMaxLength(20);
+        
     }
+
+
+
+
+
+
+
+
+    
 }

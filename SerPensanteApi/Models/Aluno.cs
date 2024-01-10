@@ -8,5 +8,8 @@ public class Aluno {
     public string  Email { get; set; }
     public bool Ativo { get; set; }
     public string PasswordHash { get; set; }
+    public string Imagem { get; set; }
+    public ICollection<AlunoCurso> AlunoCursos { get; set; }
+    
 
 }
