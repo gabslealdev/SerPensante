@@ -5,7 +5,7 @@ using SerPenApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 
-namespace SerPenApi.Controller;
+namespace SerPenApi.Controllers;
 
 [ApiController]
 public class AlunoController : ControllerBase

@@ -6,6 +6,7 @@ builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
+
 builder.Services.AddDbContext<SpenDataContext>();
 
 var app = builder.Build();

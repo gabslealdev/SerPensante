@@ -16,7 +16,7 @@ public class EditorAlunoViewModel
     public string Telefone { get; set; }
    
    [Required]
-   [DataType(DataType.EmailAddress, ErrorMessage = "Formato inválido")]
    [EmailAddress]
+   [RegularExpression(".+\\@.+\\..+",ErrorMessage = "Informe um email válido...")]
     public string Email { get; set; }
 }
