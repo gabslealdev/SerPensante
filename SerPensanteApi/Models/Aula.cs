@@ -1,4 +1,4 @@
-using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SerPensanteApi.Models;
 
@@ -9,8 +9,10 @@ public class Aula{
     public string LinkUrl { get; set; }
     public bool Assistido { get; set; }
     public int ProfessorId { get; set; }
+    [JsonIgnore]
     public Professor Professor { get; set; }
     public int CursoId { get; set; }
+    [JsonIgnore]
     public Curso Curso { get; set; }
 
 }

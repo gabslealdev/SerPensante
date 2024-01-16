@@ -45,6 +45,7 @@ public class AulaController : ControllerBase
     [HttpPost("aulas")]
     public async Task<IActionResult> PostAsync([FromServices] SpenDataContext context, [FromBody] CreateAulaViewModel model)
     {
+        
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<Aula>(ModelState.GetErrors()));
         try

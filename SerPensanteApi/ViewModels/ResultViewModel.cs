@@ -1,3 +1,5 @@
+using SerPensanteApi.Models;
+
 namespace SerPenApi.ViewModels; 
 
 public class ResultViewModel<T>
@@ -21,6 +23,7 @@ public class ResultViewModel<T>
     {
         Errors.Add(error);
     }
+
 
     public T Data { get; set; }
     public List<string> Errors { get; private set; } = new();

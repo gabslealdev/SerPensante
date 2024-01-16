@@ -20,9 +20,9 @@ public class MateriaController : ControllerBase
             var materias = await context.Materias.ToListAsync();
             return Ok(new ResultViewModel<List<Materia>>(materias));
         }
-        catch (Exception)
+        catch
         {
-            return StatusCode(500, new ResultViewModel<Materia>("Falha interna no servior"));
+            return StatusCode(500, new ResultViewModel<Materia>("ERMT001 - Falha interna no servior"));
         }
     }
 
@@ -34,18 +34,18 @@ public class MateriaController : ControllerBase
             var materia = await context.Materias.FirstOrDefaultAsync(x => x.Id == id);
 
             if (materia == null)
-                return BadRequest(new ResultViewModel<Materia>("Materia não encontrada"));
+                return BadRequest(new ResultViewModel<Materia>("Materia não encontrada, verifique os dados e tente novamente"));
 
             return Ok(new ResultViewModel<Materia>(materia));            
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<Materia>("Falha interna no servior"));
+            return StatusCode(500, new ResultViewModel<Materia>("ERMT002 - Falha interna no servior"));
         }
 
     }
 
-    [HttpPost("materia")]
+    [HttpPost("materias")]
     public async Task<IActionResult> PostAsync([FromBody] EditorMateriaViewModel model, [FromServices] SpenDataContext context)
     {
         if(!ModelState.IsValid)
@@ -65,15 +65,15 @@ public class MateriaController : ControllerBase
         }
         catch (DbUpdateException)
         {
-            return BadRequest(new ResultViewModel<Materia>("Não foi possivel incluir a materia"));
+            return BadRequest(new ResultViewModel<Materia>("Não foi possivel incluir a materia, verifique os dados e tente novamente."));
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<Materia>("Falha Interna do servidor"));
+            return StatusCode(500, new ResultViewModel<Materia>("ERRMT003 - Falha Interna do servidor"));
         }
     }
 
-    [HttpPut("materia/{id:int}")]
+    [HttpPut("materias/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] EditorMateriaViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -94,15 +94,15 @@ public class MateriaController : ControllerBase
         }
         catch (DbUpdateException)
         {
-            return BadRequest(new ResultViewModel<Materia>("Não foi possivel atualizar a materia"));
+            return BadRequest(new ResultViewModel<Materia>("Não foi possivel atualizar a materia, verifique os dados e tente novamente"));
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<Materia>("Falha interna no servidor"));
+            return StatusCode(500, new ResultViewModel<Materia>("ERRMT004 - Falha interna no servidor"));
         }
     }
 
-    [HttpDelete("materia/{id:int}")]
+    [HttpDelete("materias/{id:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -111,17 +111,17 @@ public class MateriaController : ControllerBase
 
             if (materia == null)
             {
-                return NotFound();
+                return BadRequest(new ResultViewModel<Materia>("Não encontramos esta materia, verifique os dados e tente novamente"));
             }
 
             context.Materias.Remove(materia);
             await context.SaveChangesAsync();
 
-            return Ok();
+            return Ok(new ResultViewModel<Materia>(materia));
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<Materia>("Falha interna no servidor"));
+            return StatusCode(500, new ResultViewModel<Materia>("ERRMT005 - Falha interna no servidor"));
         }
     }
 }

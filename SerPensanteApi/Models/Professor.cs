@@ -1,4 +1,4 @@
-using System;
+using System.Text.Json.Serialization;
 
 namespace SerPensanteApi.Models;
 
@@ -11,5 +11,6 @@ public class Professor {
     public bool Ativo { get; set; }
     public string PasswordHash { get; set; }
     public string Imagem { get; set; } 
+    [JsonIgnore]
     public List<Aula> Aulas { get; set; }
 }
