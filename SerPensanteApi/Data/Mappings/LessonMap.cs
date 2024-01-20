@@ -4,24 +4,24 @@ using SerPensanteApi.Models;
 
 namespace SerPensanteApi.Data.Mappings;
 
-public class AulaMap : IEntityTypeConfiguration<Aula>
+public class LessonMap : IEntityTypeConfiguration<Lesson>
 {
-    public void Configure(EntityTypeBuilder<Aula> builder)
+    public void Configure(EntityTypeBuilder<Lesson> builder)
     {
-        builder.ToTable("Aula");
+        builder.ToTable("Lesson");
 
         builder.HasKey(x => x.Id);
         // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
 
-        builder.Property(x => x.Titulo)
+        builder.Property(x => x.Title)
             .IsRequired()
-            .HasColumnName("Titulo")
+            .HasColumnName("Title")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
         
-        builder.Property(x => x.Duracao)
+        builder.Property(x => x.Duration)
             .IsRequired()
-            .HasColumnName("Duracao")
+            .HasColumnName("Duration")
             .HasColumnType("DATETIME");
 
         builder.Property(x => x.LinkUrl)
@@ -29,23 +29,23 @@ public class AulaMap : IEntityTypeConfiguration<Aula>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(80);
         
-        builder.Property(x => x.Assistido)
+        builder.Property(x => x.Watched)
             .HasColumnType("BIT")
-            .HasColumnName("Assistido")
+            .HasColumnName("Watched")
             .HasDefaultValue(0);
 
-        builder.HasIndex(x => x.Titulo, "IX_AULA_TITULO").IsUnique();  
+        builder.HasIndex(x => x.Title, "IX_LESSON_TITLE").IsUnique();  
 
-        builder.HasOne(x => x.Professor)
-            .WithMany(x => x.Aulas)
-            .HasForeignKey(x => x.ProfessorId)
-            .HasConstraintName("FK_PROFESSOR")
+        builder.HasOne(x => x.Teacher)
+            .WithMany(x => x.Lessons)
+            .HasForeignKey(x => x.TeacherId)
+            .HasConstraintName("FK_TEACHER")
             .OnDelete(DeleteBehavior.NoAction);
         
-        builder.HasOne(x => x.Curso)
-            .WithMany(x => x.Aulas)
-            .HasForeignKey(x => x.CursoId)
-            .HasConstraintName("FK_CURSO")
+        builder.HasOne(x => x.Course)
+            .WithMany(x => x.Lessons)
+            .HasForeignKey(x => x.CourseId)
+            .HasConstraintName("FK_COURSE")
             .OnDelete(DeleteBehavior.NoAction);
     }
 }

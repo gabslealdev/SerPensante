@@ -8,125 +8,125 @@ using SerPensanteApi.Models;
 namespace SerPenApi.Controllers;
 
 [ApiController]
-public class ProfessorController : ControllerBase
+public class TeacherController : ControllerBase
 {
-    [HttpGet("professores")]
+    [HttpGet("teachers")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
         {
-            var professores = await context.Professores.ToListAsync();
-            return Ok(new ResultViewModel<List<Professor>>(professores));
+            var teachers = await context.Teachers.ToListAsync();
+            return Ok(new ResultViewModel<List<Teacher>>(teachers));
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<Professor>("Falha interna no servidor"));
+            return StatusCode(500, new ResultViewModel<Teacher>("Falha interna no servidor"));
         }
 
     }
 
-    [HttpGet("professores/{matricula:int}")]
-    public async Task<IActionResult> GetByIdAsync([FromRoute] int matricula, [FromServices] SpenDataContext context)
+    [HttpGet("teachers/{id:int}")]
+    public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
         {
-            var professor = await context.Professores.FirstOrDefaultAsync(x => x.Matricula == matricula);
+            var teacher = await context.Teachers.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (professor == null)
-                return BadRequest(new ResultViewModel<Professor>("Não foi possivel encontrar este professor"));
+            if (teacher == null)
+                return BadRequest(new ResultViewModel<Teacher>("Não foi possivel encontrar este Teacher"));
             
-            return Ok(new ResultViewModel<Professor>(professor));
+            return Ok(new ResultViewModel<Teacher>(teacher));
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<Professor>("Falha interna no servidor"));
+            return StatusCode(500, new ResultViewModel<Teacher>("Falha interna no servidor"));
         }
     }
 
-    [HttpPost("professores")]
-    public async Task<IActionResult> PostAsync([FromBody] EditorProfessorViewModel model, [FromServices] SpenDataContext context)
+    [HttpPost("teachers")]
+    public async Task<IActionResult> PostAsync([FromBody] EditorTeacherViewModel model, [FromServices] SpenDataContext context)
     {
         if(!ModelState.IsValid)
-            return BadRequest(new ResultViewModel<Professor>(ModelState.GetErrors()));
+            return BadRequest(new ResultViewModel<Teacher>(ModelState.GetErrors()));
         try
         {
-            var professor = new Professor
+            var teacher = new Teacher
             {
-                Nome = model.Nome,
-                Datanasc = model.DataNasc,
-                Telefone = model.Telefone,
+                Name = model.Name,
+                BirthDate = model.BirthDate,
+                Contact = model.Contact,
                 Email = model.Email,
                 PasswordHash = "teste",
-                Imagem = "teste/teste/localhost"
+                Image = "teste/teste/localhost"
             };
-            await context.AddAsync(professor);
+            await context.AddAsync(teacher);
             await context.SaveChangesAsync();  
 
-            return Created($"professor/{professor.Matricula}", new ResultViewModel<Professor>(professor));
+            return Created($"Teacher/{teacher.Id}", new ResultViewModel<Teacher>(teacher));
         }
         catch (DbUpdateException)
         {
-            return BadRequest(new ResultViewModel<Professor>("Não foi possivel cadastrar este professor"));
+            return BadRequest(new ResultViewModel<Teacher>("Não foi possivel cadastrar este Teacher"));
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<Professor>("Falha interna do servidor"));
+            return StatusCode(500, new ResultViewModel<Teacher>("Falha interna do servidor"));
         }
     }
 
-    [HttpPut("professores/{matricula:int}")]
-    public async Task<IActionResult> PutAsync([FromRoute] int matricula, [FromBody] EditorProfessorViewModel model, [FromServices] SpenDataContext context)
+    [HttpPut("teachers/{id:int}")]
+    public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] EditorTeacherViewModel model, [FromServices] SpenDataContext context)
     {
         try
         {
-            var professor = await context.Professores.FirstOrDefaultAsync(p => p.Matricula == matricula);
+            var Teacher = await context.Teachers.FirstOrDefaultAsync(p => p.Id == id);
 
-            if(professor == null)
+            if(Teacher == null)
             {
-                return BadRequest(new ResultViewModel<Professor>("Não foi possivel carregar as informações desse professor, verifique a matricula e tente novamente"));
+                return BadRequest(new ResultViewModel<Teacher>("Não foi possivel carregar as informações desse Teacher, verifique a id e tente novamente"));
             }
 
-            professor.Nome = model.Nome;
-            professor.Datanasc = model.DataNasc;
-            professor.Telefone = model.Telefone; 
-            professor.Email = model.Email;
+            Teacher.Name = model.Name;
+            Teacher.BirthDate = model.BirthDate;
+            Teacher.Contact = model.Contact; 
+            Teacher.Email = model.Email;
 
-            context.Professores.Update(professor);
+            context.Teachers.Update(Teacher);
             await context.SaveChangesAsync();
             
-            return Ok(new ResultViewModel<Professor>(professor));
+            return Ok(new ResultViewModel<Teacher>(Teacher));
         }
         catch (DbUpdateException)
         {
             
-            return BadRequest(new ResultViewModel<Professor>("Não foi possivel atualizar as informações desse professor"));
+            return BadRequest(new ResultViewModel<Teacher>("Não foi possivel atualizar as informações desse Teacher"));
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<Professor>("Falha interna no servidor"));
+            return StatusCode(500, new ResultViewModel<Teacher>("Falha interna no servidor"));
         }
     }
 
-    [HttpDelete("professores/{matricula:int}")]
-    public async Task<IActionResult> DeleteAsync([FromRoute] int matricula, [FromServices] SpenDataContext context)
+    [HttpDelete("teachers/{id:int}")]
+    public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
         {
-            var professor = await context.Professores.FirstOrDefaultAsync(p => p.Matricula == matricula);
+            var teacher = await context.Teachers.FirstOrDefaultAsync(p => p.Id == id);
 
-            if(professor == null)
+            if(teacher == null)
             {
-                return BadRequest("Não foi possivel encontrar um professor com essa matricula");
+                return BadRequest("Não foi possivel encontrar um Teacher com essa id");
             }
 
-            context.Professores.Remove(professor);
+            context.Teachers.Remove(teacher);
             await context.SaveChangesAsync();
 
-            return Ok(new ResultViewModel<Professor>(professor));
+            return Ok(new ResultViewModel<Teacher>(teacher));
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<Professor>("Falha interna no servidor"));
+            return StatusCode(500, new ResultViewModel<Teacher>("Falha interna no servidor"));
         }
 
     }

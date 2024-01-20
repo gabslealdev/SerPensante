@@ -2,17 +2,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SerPenApi.ViewModels;
 
-public class EditorProfessorViewModel
+public class EditorTeacherViewModel
 {
    [Required]
    [StringLength(60, MinimumLength = 4, ErrorMessage = "Minimo 4 caracteres")]
-   public string Nome { get; set; }
+   public string Name { get; set; }
    [Required]
-   public DateTime DataNasc { get; set; }
+   public DateTime BirthDate { get; set; }
 
    [Required]
    [StringLength(20, MinimumLength = 8, ErrorMessage = "Minimo 8 Caracteres")]
-   public string Telefone { get; set; }
+   public string Contact { get; set; }
 
    [Required]
    [DataType(DataType.EmailAddress, ErrorMessage = "Formato inválido")]

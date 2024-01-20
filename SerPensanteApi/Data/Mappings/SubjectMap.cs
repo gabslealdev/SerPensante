@@ -3,12 +3,12 @@ using SerPensanteApi.Models;
 
 namespace SerPensanteApi.Data.Mappings;
 
-public class MateriaMap : IEntityTypeConfiguration<Materia>
+public class SubjectMap : IEntityTypeConfiguration<Subject>
 {
-    public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Materia> builder)
+    public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Subject> builder)
     {
         // Criando tabela
-        builder.ToTable("Materia");
+        builder.ToTable("Subject");
 
         // Propriedades 
         builder.HasKey(x => x.Id);
@@ -17,15 +17,15 @@ public class MateriaMap : IEntityTypeConfiguration<Materia>
             .ValueGeneratedOnAdd()
             .UseIdentityColumn(1,1);
 
-        builder.Property(x => x.Nome)
+        builder.Property(x => x.Name)
             .IsRequired()
-            .HasColumnName("Nome")
+            .HasColumnName("Name")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(80);
         
-        builder.Property(x => x.Tipo)
+        builder.Property(x => x.Science)
             .IsRequired()
-            .HasColumnName("Tipo")
+            .HasColumnName("Science")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(20);
         

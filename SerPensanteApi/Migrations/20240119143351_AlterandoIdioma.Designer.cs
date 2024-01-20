@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SerPensanteApi.Data;
 
@@ -11,9 +12,11 @@ using SerPensanteApi.Data;
 namespace SerPenApi.Migrations
 {
     [DbContext(typeof(SpenDataContext))]
-    partial class SpenDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240119143351_AlterandoIdioma")]
+    partial class AlterandoIdioma
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,23 +24,6 @@ namespace SerPenApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("SerPenApi.Models.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Role");
-                });
 
             modelBuilder.Entity("SerPensanteApi.Models.Course", b =>
                 {
@@ -194,12 +180,7 @@ namespace SerPenApi.Migrations
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("PasswordHash");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
 
                     b.HasIndex(new[] { "Email" }, "IX_STUDENT_EMAIL")
                         .IsUnique();
@@ -310,12 +291,7 @@ namespace SerPenApi.Migrations
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("PasswordHash");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
 
                     b.HasIndex(new[] { "Email" }, "IX_TEACHER_EMAIL")
                         .IsUnique();
@@ -356,18 +332,6 @@ namespace SerPenApi.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("SerPensanteApi.Models.Student", b =>
-                {
-                    b.HasOne("SerPenApi.Models.Role", "Role")
-                        .WithMany("StudentRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_STUDENT_ROLE");
-
-                    b.Navigation("Role");
-                });
-
             modelBuilder.Entity("SerPensanteApi.Models.StudentCourse", b =>
                 {
                     b.HasOne("SerPensanteApi.Models.Course", "Course")
@@ -387,25 +351,6 @@ namespace SerPenApi.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("SerPensanteApi.Models.Teacher", b =>
-                {
-                    b.HasOne("SerPenApi.Models.Role", "Role")
-                        .WithMany("TeacherRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_TEACHER_ROLE");
-
-                    b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("SerPenApi.Models.Role", b =>
-                {
-                    b.Navigation("StudentRoles");
-
-                    b.Navigation("TeacherRoles");
                 });
 
             modelBuilder.Entity("SerPensanteApi.Models.Course", b =>

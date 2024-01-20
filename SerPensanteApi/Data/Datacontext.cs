@@ -6,26 +6,25 @@ namespace SerPensanteApi.Data;
 
 public class SpenDataContext : DbContext
 {
-    public DbSet<Materia> Materias { get; set; }
-    public DbSet<Aluno> Alunos { get; set; }
-    public DbSet<Aula> Aulas { get; set; }
-    public DbSet<Curso> Cursos { get; set; }
-    public DbSet<Professor> Professores { get; set; }
-    public DbSet<AlunoCurso> AlunosCursos { get; set; }
+    public DbSet<Subject> Subjects { get; set; }
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Lesson> Lessons { get; set; }
+    public DbSet<Course> Courses { get; set; }
+    public DbSet<Teacher> Teachers { get; set; }
+    public DbSet<StudentCourse> StudentSCourses { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-    => options.UseSqlServer("Server=localhost,1433;Database=SerPenDB;User ID=sa;Password=1q2w3e4r@#$;trustservercertificate=true;");
+    => options.UseSqlServer("Server=localhost,1433;Database=SerPenDB2;User ID=sa;Password=1q2w3e4r@#$;trustservercertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new AlunoMap()); 
-        modelBuilder.ApplyConfiguration(new AulaMap());
-        modelBuilder.ApplyConfiguration(new AlunoCursoMap());
-        modelBuilder.ApplyConfiguration(new CursoMap());
-        modelBuilder.ApplyConfiguration(new MateriaMap());
-        modelBuilder.ApplyConfiguration(new ProfessorMap());
+        modelBuilder.ApplyConfiguration(new StudentMap()); 
+        modelBuilder.ApplyConfiguration(new LessonMap());
+        modelBuilder.ApplyConfiguration(new StudentCourseMap());
+        modelBuilder.ApplyConfiguration(new CourseMap());
+        modelBuilder.ApplyConfiguration(new SubjectMap());
+        modelBuilder.ApplyConfiguration(new TeacherMap());
     }
-
 }
 
 

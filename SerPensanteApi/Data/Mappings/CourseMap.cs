@@ -4,29 +4,29 @@ using SerPensanteApi.Models;
 
 namespace SerPensanteApi.Data.Mappings;
 
-public class CursoMap : IEntityTypeConfiguration<Curso>
+public class CourseMap : IEntityTypeConfiguration<Course>
 {
-    public void Configure(EntityTypeBuilder<Curso> builder)
+    public void Configure(EntityTypeBuilder<Course> builder)
     {
-        builder.ToTable("Curso");
+        builder.ToTable("Course");
 
         builder.HasKey(x => x.Id);
         // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
 
-        builder.Property(x => x.Nome)
+        builder.Property(x => x.Name)
             .IsRequired()
-            .HasColumnName("Nome")
+            .HasColumnName("Name")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(80);
         
-        builder.Property(x => x.Duracao)
+        builder.Property(x => x.Duration)
             .IsRequired()
-            .HasColumnName("Duracao")
+            .HasColumnName("Duration")
             .HasColumnType("DATETIME");
         
-        builder.Property(x => x.Descricao)
+        builder.Property(x => x.Description)
             .IsRequired()
-            .HasColumnName("Descricao")
+            .HasColumnName("Description")
             .HasColumnType("TEXT");
         
         builder.Property(x => x.LinkUrl)
@@ -34,34 +34,32 @@ public class CursoMap : IEntityTypeConfiguration<Curso>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(80);
         
-        builder.Property(x => x.Ativo)
+        builder.Property(x => x.Active)
             .HasColumnType("BIT")
-            .HasColumnName("Ativo")
+            .HasColumnName("Active")
             .HasDefaultValue(0);
         
-        builder.Property(x => x.CriadoEm)
+        builder.Property(x => x.CreatedAt)
             .IsRequired()
-            .HasColumnName("CriadoEm")
+            .HasColumnName("CreatedAt")
             .HasColumnType("DATETIME");
 
-        builder.Property(x => x.CodMateria)
+        builder.Property(x => x.SubjectId)
             .IsRequired()
-            .HasColumnName("CodMateria")
+            .HasColumnName("SubjectId")
             .HasColumnType("INT");
         
-        builder.Property(x => x.Imagem)
-            .HasColumnName("Imagem")
+        builder.Property(x => x.Image)
+            .HasColumnName("Image")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
 
-        builder.HasIndex(x => x.Nome, "IX_CURSO_NOME").IsUnique();
+        builder.HasIndex(x => x.Name, "IX_COURSE_NAME").IsUnique();
 
-        builder.HasOne(x => x.Materia)
-             .WithMany(x => x.Cursos)
-             .HasForeignKey(x => x.CodMateria)
-             .HasConstraintName("FK_MATERIA")
+        builder.HasOne(x => x.Subject)
+             .WithMany(x => x.Courses)
+             .HasForeignKey(x => x.SubjectId)
+             .HasConstraintName("FK_SUBJECT")
              .OnDelete(DeleteBehavior.NoAction);
-    
-
     }
 }
