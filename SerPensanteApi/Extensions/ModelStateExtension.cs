@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace SerPenApi.Extensions;
+namespace SerPensanteApi.Extensions;
 
 public static class ModelStateExtension
 {

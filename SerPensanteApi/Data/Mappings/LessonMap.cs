@@ -11,7 +11,7 @@ public class LessonMap : IEntityTypeConfiguration<Lesson>
         builder.ToTable("Lesson");
 
         builder.HasKey(x => x.Id);
-        // CODE-FIRST builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
+        //builder.Property(x => x.Id).ValueGeneratorOnAdd().UseIdenityColumn();
 
         builder.Property(x => x.Title)
             .IsRequired()

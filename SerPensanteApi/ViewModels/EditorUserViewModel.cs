@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace SerPenApi.ViewModels;
+namespace SerPensanteApi.ViewModels;
 
-public class EditorTeacherViewModel
+public class EditorUserViewModel
 {
    [Required]
    [StringLength(60, MinimumLength = 4, ErrorMessage = "Minimo 4 caracteres")]

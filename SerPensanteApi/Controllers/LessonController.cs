@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SerPenApi.ViewModels;
+using SerPensanteApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
-using SerPenApi.Extensions;
+using SerPensanteApi.Extensions;
 
 namespace SerPenApi.Controllers;
 
@@ -120,7 +120,7 @@ public class LessonController : ControllerBase
             var lesson = await context.Lessons.FirstOrDefaultAsync(a => a.Id == id);
 
             if (lesson == null)
-                return BadRequest(new ResultViewModel<Lesson>(lesson));
+                return BadRequest(new ResultViewModel<Lesson>("Não foi possivel encontrar está aula"));
 
             context.Lessons.Remove(lesson);
             await context.SaveChangesAsync();

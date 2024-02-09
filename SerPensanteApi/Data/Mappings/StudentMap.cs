@@ -16,7 +16,7 @@ public class StudentMap : IEntityTypeConfiguration<Student>
         
         builder.Property(x => x.Id)
             .ValueGeneratedOnAdd()
-            .UseIdentityColumn(1,1);
+            .UseIdentityColumn(7000,1);
 
         builder.Property(x => x.Name)
             .IsRequired()
@@ -57,10 +57,6 @@ public class StudentMap : IEntityTypeConfiguration<Student>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
         
-        builder.HasOne(x => x.Role)
-            .WithMany(x => x.StudentRoles)
-            .HasConstraintName("FK_STUDENT_ROLE")
-            .OnDelete(DeleteBehavior.Cascade);
 
         // Index
         builder.HasIndex(x => x.Email, "IX_STUDENT_EMAIL").IsUnique();

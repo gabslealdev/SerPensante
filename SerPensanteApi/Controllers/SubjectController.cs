@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SerPenApi.Extensions;
-using SerPenApi.ViewModels;
+using SerPensanteApi.Extensions;
+using SerPensanteApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 
@@ -12,7 +12,7 @@ namespace SerPensanteApi.Controllers;
 [ApiController]
 public class SubjectController : ControllerBase
 {
-    [HttpGet("subject")]
+    [HttpGet("subjects")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try

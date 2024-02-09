@@ -1,4 +1,6 @@
-namespace SerPenApi.Models;
+using SerPensanteApi.Models.Enums;
+
+namespace SerPensanteApi.Models;
 
 public class User
 {

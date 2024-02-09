@@ -1,4 +1,4 @@
-using SerPenApi.Models;
+using SerPensanteApi.Models;
 
 namespace SerPensanteApi.Models;
 

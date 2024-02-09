@@ -16,7 +16,7 @@ public class TeacherMap : IEntityTypeConfiguration<Teacher>
         
         builder.Property(x => x.Id)
             .ValueGeneratedOnAdd()
-            .UseIdentityColumn(1,1);
+            .UseIdentityColumn(4000,1);
 
         builder.Property(x => x.Name)
             .IsRequired()
@@ -56,11 +56,11 @@ public class TeacherMap : IEntityTypeConfiguration<Teacher>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(160);
 
-        builder.HasOne(x => x.Role)
-            .WithMany(x => x.TeacherRoles)
-            .HasConstraintName("FK_TEACHER_ROLE")
-            .OnDelete(DeleteBehavior.Cascade);
-        
+        builder.Property(x => x.Role)
+        .HasColumnName("Role")
+        .HasColumnType("INT");
+
+       
         //Index
         builder.HasIndex(x => x.Email, "IX_TEACHER_EMAIL").IsUnique();
     }

@@ -1,4 +1,4 @@
-namespace SerPenApi.ViewModels;
+namespace SerPensanteApi.ViewModels;
 
 public class EditorCourseViewModel
 {

@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SerPenApi.Extensions;
-using SerPenApi.ViewModels;
+using SerPensanteApi.Extensions;
+using SerPensanteApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 
-namespace SerPenApi.Controller;
+namespace SerPenApi.Controllers;
 
 [ApiController]
 public class CourseController : ControllerBase
