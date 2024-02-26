@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SerPensanteApi.ViewModels.Lessons;
 using SerPensanteApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SerPensanteApi.Extensions;
 using SerPensanteApi.ViewModels;
+using SerPensanteApi.ViewModels.Courses;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 

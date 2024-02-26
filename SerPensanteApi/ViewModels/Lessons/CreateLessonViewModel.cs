@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace SerPensanteApi.ViewModels;
+namespace SerPensanteApi.ViewModels.Lessons;
 
 public class CreateLessonViewModel : UpdateLessonViewModel
 {

@@ -6,8 +6,11 @@ using SerPensanteApi.Extensions;
 using SerPensanteApi.Models.Enums;
 using SerPensanteApi.Services;
 using SerPensanteApi.ViewModels;
+using SerPensanteApi.ViewModels.Accounts;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
+using System.Text.RegularExpressions;
+using Azure.Storage.Blobs;
 
 namespace SerPensanteApi.Controllers;
 
@@ -64,7 +67,7 @@ public class AccountController : ControllerBase
             Contact = model.Contact,
             Email = model.Email,
             PasswordHash = PasswordHasher.Hash(password),
-            Image = "src/profile/student/images",
+            Image = "",
             Role = Role.Student
         };
         try
@@ -175,5 +178,47 @@ public class AccountController : ControllerBase
         }
 
     }
+    [HttpPost("accounts/upload-image")]
+    public async Task<IActionResult> UploadImage([FromBody] UploadImageViewModel model, [FromServices] SpenDataContext context)
+    {
+        var fileName = Guid.NewGuid().ToString() + ".jpg";
+
+        var data = new Regex(@"^data:image\/[a-z]+;base64,").Replace(model.Base64Image, "");
+
+        var imageBytes = Convert.FromBase64String(data);
+
+        var blobclient = new BlobClient("DefaultEndpointsProtocol=https;AccountName=serpensante01;AccountKey=IoTaTXxpx1VcmRxqoFyjbdrz87MnxmIrVvte+JokDt2JQ1MrxgmKEXhrw+4iPsLu+BEJ0bOzvGDf+AStAAEBcQ==;EndpointSuffix=core.windows.net", "source", fileName);
+
+        try
+        {
+            using (var stream = new MemoryStream(imageBytes))
+            {
+                blobclient.Upload(stream);
+            }
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, new ResultViewModel<string>("Falha interna no servidor"));
+        }
+
+        var student = await context.Students.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);
+
+        if (student == null)
+            return BadRequest(new ResultViewModel<string>("Usuário não encontrado"));
+
+        student.Image = blobclient.Uri.AbsoluteUri;
+        try
+        {
+            context.Students.Update(student);
+            await context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new ResultViewModel<string>("Falha interna no servidor"));
+        }
+
+        return Ok(new ResultViewModel<string>("Imagem alterada com sucesso!", null));
+    }
+
 
 }

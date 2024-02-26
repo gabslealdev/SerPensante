@@ -4,6 +4,7 @@ using SecureIdentity.Password;
 using SerPensanteApi.Extensions;
 using SerPensanteApi.Models.Enums;
 using SerPensanteApi.Services;
+using SerPensanteApi.ViewModels.Accounts;
 using SerPensanteApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;

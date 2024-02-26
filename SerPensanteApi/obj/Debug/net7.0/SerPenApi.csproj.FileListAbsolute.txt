@@ -25,6 +25,7 @@ C:\Users\Gabriel\OneDrive\Dev\Portifolio\SerPensanteApi\SerPenApi\obj\Debug\net7
 C:\Users\Gabriel\OneDrive\Dev\Portifolio\SerPensanteApi\SerPenApi\obj\Debug\net7.0\ref\SerPenApi.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\appsettings.json
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\SerPenApi.staticwebassets.runtime.json
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\SerPenApi.exe
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\SerPenApi.deps.json
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\SerPenApi.runtimeconfig.json
@@ -32,6 +33,8 @@ C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\SerPenApi.d
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\SerPenApi.pdb
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Azure.Storage.Blobs.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Azure.Storage.Common.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Humanizer.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -58,6 +61,7 @@ C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Code
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Drawing.Common.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.IO.Hashing.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Memory.Data.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Runtime.Caching.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
