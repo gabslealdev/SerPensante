@@ -5,21 +5,29 @@ using SerPensanteApi;
 using SerPensanteApi.Services;
 using SerPensanteApi.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
-
 ConfigureAuthentication(builder);
-
 ConfigureMvc(builder);
-
 ConfigureService(builder);
 
 var app = builder.Build();
+LoadConfiguration(app);
 
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseStaticFiles();
 app.Run();
+
+void LoadConfiguration(WebApplication app)
+{
+    Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
+
+    var smtp = new Configuration.SmtpConfiguration();
+    app.Configuration.GetSection("Smtp").Bind(smtp);
+    Configuration.Smtp = smtp;
+}
 
 void ConfigureAuthentication(WebApplicationBuilder buider)
 {
@@ -53,6 +61,7 @@ void ConfigureService(WebApplicationBuilder builder)
 {
     builder.Services.AddDbContext<SpenDataContext>();
     builder.Services.AddTransient<TokenService>();
+    builder.Services.AddTransient<EmailService>();
 }
 
 

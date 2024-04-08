@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SecureIdentity.Password;
@@ -74,6 +73,10 @@ public class AccountController : ControllerBase
         {
             await context.AddAsync(student);
             context.SaveChanges();
+
+            EmailService emailService = new EmailService();
+
+            emailService.Send(student.Name,student.Email, "Bem-vindo a plataforma de estudo Seres Pensantes", $"Sua senha é <strong>{password}</strong>");
 
             return Created($"student/{student.Id}", new ResultViewModel<dynamic>(new
             {
@@ -178,7 +181,8 @@ public class AccountController : ControllerBase
         }
 
     }
-    [HttpPost("accounts/upload-image")]
+    
+    [HttpPost("accounts/students/upload-image")]
     public async Task<IActionResult> UploadImage([FromBody] UploadImageViewModel model, [FromServices] SpenDataContext context)
     {
         var fileName = Guid.NewGuid().ToString() + ".jpg";
@@ -219,6 +223,4 @@ public class AccountController : ControllerBase
 
         return Ok(new ResultViewModel<string>("Imagem alterada com sucesso!", null));
     }
-
-
 }

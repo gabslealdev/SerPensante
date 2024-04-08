@@ -11,6 +11,7 @@ namespace SerPenApi.Controllers;
 [ApiController]
 public class CourseController : ControllerBase
 {
+
     [HttpGet("courses")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
@@ -24,6 +25,7 @@ public class CourseController : ControllerBase
             return StatusCode(500, new ResultViewModel<Course>("Falha interna no servidor"));
         }
     }
+
     [HttpGet("courses/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {

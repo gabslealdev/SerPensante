@@ -8,6 +8,8 @@ using SerPensanteApi.ViewModels.Accounts;
 using SerPensanteApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
+using System.Text.RegularExpressions;
+using Azure.Storage.Blobs;
 
 namespace SerPensanteApi.Controllers;
 
@@ -47,7 +49,7 @@ public class TeacherAccountController : ControllerBase
     }
 
     [HttpPost("account/teachers")]
-    public async Task<IActionResult> PostTeacherAsync([FromBody] EditorUserViewModel model, [FromServices] SpenDataContext context)
+    public async Task<IActionResult> PostTeacherAsync([FromBody] EditorUserViewModel model,[FromServices] EmailService emailService, [FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<Teacher>(ModelState.GetErrors()));
@@ -71,6 +73,8 @@ public class TeacherAccountController : ControllerBase
             await context.AddAsync(teacher);
             await context.SaveChangesAsync();
 
+            emailService.Send(teacher.Name, teacher.Email, "Bem-vindo a plataforma de estudo Seres Pensantes", $"Sua senha é <strong>{password}</strong>");
+
             return Created($"teacher/{teacher.Id}", new ResultViewModel<dynamic>(new
             {
                 teacher = teacher.Email,
@@ -89,7 +93,7 @@ public class TeacherAccountController : ControllerBase
     }
 
 
-    [HttpPost("account/teacher/login")]
+    [HttpPost("account/teachers/login")]
     public async Task<IActionResult> TeacherLogin([FromBody] LoginViewModel model, [FromServices] SpenDataContext context, [FromServices] TokenService tokenService)
     {
         if (!ModelState.IsValid)
@@ -117,7 +121,7 @@ public class TeacherAccountController : ControllerBase
 
     }
 
-    [HttpPut("teachers/{id:int}")]
+    [HttpPut("account/teachers/update/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] EditorUserViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -174,5 +178,46 @@ public class TeacherAccountController : ControllerBase
             return StatusCode(500, new ResultViewModel<Teacher>("Falha interna no servidor"));
         }
 
+    }
+
+    [HttpPost("account/teachers/upload-image")]
+    public async Task<IActionResult> UploadImage([FromBody] UploadImageViewModel model, [FromServices] SpenDataContext context)
+    {
+        var fileName = Guid.NewGuid().ToString() + ".jpg";
+
+        var data = new Regex(@"^data:image\/[a-z]+;base64,").Replace(model.Base64Image, "");
+
+        var imageBytes = Convert.FromBase64String(data);
+
+        var blobclient = new BlobClient("DefaultEndpointsProtocol=https;AccountName=serpensante01;AccountKey=IoTaTXxpx1VcmRxqoFyjbdrz87MnxmIrVvte+JokDt2JQ1MrxgmKEXhrw+4iPsLu+BEJ0bOzvGDf+AStAAEBcQ==;EndpointSuffix=core.windows.net", "source", fileName);
+
+        try
+        {
+            using (var stream = new MemoryStream(imageBytes))
+            {
+                blobclient.Upload(stream);
+            }
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, new ResultViewModel<string>("Falha interna no servidor"));
+        }
+
+        var teacher = await context.Teachers.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);
+
+        if (teacher == null)
+            return BadRequest(new ResultViewModel<string>("Usuário não encontrado"));
+
+        teacher.Image = blobclient.Uri.AbsoluteUri;
+        try
+        {
+            context.Teachers.Update(teacher);
+            await context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new ResultViewModel<string>("Falha interna no servidor"));
+        }
+        return Ok(new ResultViewModel<string>("Imagem alterada com sucesso!", null));
     }
 }
