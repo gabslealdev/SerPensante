@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabriel\\OneDrive\\Dev\\Portifolio\\SerPensanteApi\\SerPenApi\\SerPenApi.csproj": {}
+    "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabriel\\OneDrive\\Dev\\Portifolio\\SerPensanteApi\\SerPenApi\\SerPenApi.csproj": {
+    "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabriel\\OneDrive\\Dev\\Portifolio\\SerPensanteApi\\SerPenApi\\SerPenApi.csproj",
+        "projectUniqueName": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj",
         "projectName": "SerPenApi",
-        "projectPath": "C:\\Users\\Gabriel\\OneDrive\\Dev\\Portifolio\\SerPensanteApi\\SerPenApi\\SerPenApi.csproj",
+        "projectPath": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj",
         "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabriel\\OneDrive\\Dev\\Portifolio\\SerPensanteApi\\SerPenApi\\obj\\",
+        "outputPath": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,38 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.19.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "SecureIdentity": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
