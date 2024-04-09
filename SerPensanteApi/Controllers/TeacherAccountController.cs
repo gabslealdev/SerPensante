@@ -189,7 +189,7 @@ public class TeacherAccountController : ControllerBase
 
         var imageBytes = Convert.FromBase64String(data);
 
-        var blobclient = new BlobClient();
+        var blobclient = new BlobClient("DefaultEndpointsProtocol=https;AccountName=serpensante01;AccountKey=IoTaTXxpx1VcmRxqoFyjbdrz87MnxmIrVvte+JokDt2JQ1MrxgmKEXhrw+4iPsLu+BEJ0bOzvGDf+AStAAEBcQ==;EndpointSuffix=core.windows.net", "source", fileName);
 
         try
         {
