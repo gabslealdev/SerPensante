@@ -23,10 +23,6 @@ app.Run();
 void LoadConfiguration(WebApplication app)
 {
     Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
-
-    var smtp = new Configuration.SmtpConfiguration();
-    app.Configuration.GetSection("Smtp").Bind(smtp);
-    Configuration.Smtp = smtp;
 }
 
 void ConfigureAuthentication(WebApplicationBuilder buider)
@@ -61,7 +57,6 @@ void ConfigureService(WebApplicationBuilder builder)
 {
     builder.Services.AddDbContext<SpenDataContext>();
     builder.Services.AddTransient<TokenService>();
-    builder.Services.AddTransient<EmailService>();
 }
 
 

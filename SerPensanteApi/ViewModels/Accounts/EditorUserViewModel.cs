@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace SerPensanteApi.ViewModels.Accounts;
@@ -18,4 +19,9 @@ public class EditorUserViewModel
    [DataType(DataType.EmailAddress, ErrorMessage = "Formato inválido")]
    [EmailAddress]
    public string Email { get; set; }
+
+   [Required]
+   [PasswordPropertyText]
+   public string Password { get; set; }
+   
 }

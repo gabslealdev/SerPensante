@@ -49,13 +49,10 @@ public class TeacherAccountController : ControllerBase
     }
 
     [HttpPost("account/teachers")]
-    public async Task<IActionResult> PostTeacherAsync([FromBody] EditorUserViewModel model,[FromServices] EmailService emailService, [FromServices] SpenDataContext context)
+    public async Task<IActionResult> PostTeacherAsync([FromBody] EditorUserViewModel model,[FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<Teacher>(ModelState.GetErrors()));
-
-        var password = PasswordGenerator.Generate(length: 16, includeSpecialChars: true, upperCase: false);
-
 
         var teacher = new Teacher
         {
@@ -63,7 +60,7 @@ public class TeacherAccountController : ControllerBase
             BirthDate = model.BirthDate,
             Contact = model.Contact,
             Email = model.Email,
-            PasswordHash = PasswordHasher.Hash(password),
+            PasswordHash = PasswordHasher.Hash(model.Password),
             Image = "src/profile/teacher/images",
             Role = Role.Teacher
         };
@@ -73,12 +70,11 @@ public class TeacherAccountController : ControllerBase
             await context.AddAsync(teacher);
             await context.SaveChangesAsync();
 
-            emailService.Send(teacher.Name, teacher.Email, "Bem-vindo a plataforma de estudo Seres Pensantes", $"Sua senha é <strong>{password}</strong>");
 
             return Created($"teacher/{teacher.Id}", new ResultViewModel<dynamic>(new
             {
                 teacher = teacher.Email,
-                password,
+                model.Password,
                 teacher.Role
             }));
         }

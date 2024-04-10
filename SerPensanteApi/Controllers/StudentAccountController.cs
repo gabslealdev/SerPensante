@@ -56,16 +56,13 @@ public class AccountController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<Student>(ModelState.GetErrors()));
 
-        var password = PasswordGenerator.Generate(length: 16, includeSpecialChars: true, upperCase: false);
-
-
         var student = new Student
         {
             Name = model.Name,
             BirthDate = model.BirthDate,
             Contact = model.Contact,
             Email = model.Email,
-            PasswordHash = PasswordHasher.Hash(password),
+            PasswordHash = PasswordHasher.Hash(model.Password),
             Image = "",
             Role = Role.Student
         };
@@ -74,15 +71,11 @@ public class AccountController : ControllerBase
             await context.AddAsync(student);
             context.SaveChanges();
 
-            EmailService emailService = new EmailService();
-
-            emailService.Send(student.Name,student.Email, "Bem-vindo a plataforma de estudo Seres Pensantes", $"Sua senha é <strong>{password}</strong>");
-
             return Created($"student/{student.Id}", new ResultViewModel<dynamic>(new
             {
                 student = student.Email,
                 student.Role,
-                password
+                model.Password
             }));
         }
         catch (DbUpdateException)
