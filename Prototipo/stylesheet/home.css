@@ -1,0 +1,124 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #241C1C; 
+}
+
+.login{
+    margin-right: 20px;
+    background-color: #F4D7D7;
+    padding: 10px;
+    border-radius: 5px;
+}
+.login a{
+    text-decoration: none;
+    color: #241C1C;
+}
+
+.navigation{
+    background-color: #241C1C;
+}
+
+.navigation .nav-links{
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links .nav-link{
+    margin: 15px;
+
+}
+
+.nav-link a{
+
+    text-decoration: none;
+    color: #F4D7D7;
+}
+
+.nav-link a:hover{
+    color: aqua;
+    transition: 1s;
+}
+.container{
+    position: relative;
+    padding: 15x;
+    margin: 0 auto;
+    max-width: 100rem;
+    
+}
+.arrow-left, .arrow-right{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: 0;
+    font-size: 20px;
+    line-height: 25px;
+    width: 40px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to left, transparent 0%, black 200%);
+    opacity: 0.2;
+    transition: all 600ms ease-in-out;
+}
+.arrow-right{
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to right, transparent 0%, black 200%);
+}
+.arrow-left:hover, .arrow-right:hover
+{
+    opacity: 1;
+}
+
+.section-wrapper
+{
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.sections{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 15px
+}
+.section-content{
+    height: 27rem;
+    width: 100rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: all 600ms ease-in-out;
+}
+.current-content{
+    opacity: 1;
+}
+
+#section-one{
+    background-color: aqua;
+}
+#section-two{
+    background-color: red;
+}
+#section-three{
+    background-color: yellow;
+}
+
+.footer .footer-links{
+    display: flex;
+    justify-content: center;
+}
+
+.footer-links .footer-link a{
+    margin: 10px;
+}
