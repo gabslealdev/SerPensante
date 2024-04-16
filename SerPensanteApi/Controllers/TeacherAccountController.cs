@@ -10,19 +10,31 @@ using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 using System.Text.RegularExpressions;
 using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SerPensanteApi.Controllers;
 
 [ApiController]
 public class TeacherAccountController : ControllerBase
 {
+    [AllowAnonymous]
     [HttpGet("account/teachers")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
         {
-            var teachers = await context.Teachers.ToListAsync();
-            return Ok(new ResultViewModel<List<Teacher>>(teachers));
+            var teachers = await context
+            .Teachers
+            .AsNoTracking()
+            .Include(x => x.Lessons)
+            .Select( x => new ListTeacherViewModel{
+                Id = x.Id,
+                Name = x.Name,
+                Email = x.Email,
+                Lessons = x.Lessons
+            })
+            .ToListAsync();
+            return Ok(teachers);
         }
         catch
         {
@@ -30,7 +42,7 @@ public class TeacherAccountController : ControllerBase
         }
 
     }
-
+    [Authorize]
     [HttpGet("account/teachers/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
@@ -48,6 +60,7 @@ public class TeacherAccountController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "Administrator")]
     [HttpPost("account/teachers")]
     public async Task<IActionResult> PostTeacherAsync([FromBody] EditorUserViewModel model,[FromServices] SpenDataContext context)
     {
@@ -198,7 +211,7 @@ public class TeacherAccountController : ControllerBase
         {
             return StatusCode(500, new ResultViewModel<string>("Falha interna no servidor"));
         }
-
+        
         var teacher = await context.Teachers.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);
 
         if (teacher == null)

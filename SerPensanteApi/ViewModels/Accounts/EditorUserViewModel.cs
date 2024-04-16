@@ -6,8 +6,8 @@ namespace SerPensanteApi.ViewModels.Accounts;
 public class EditorUserViewModel
 {
    [Required (ErrorMessage = "Nome é um campo obrigatório.")]
-   [StringLength(60, MinimumLength = 4, ErrorMessage = "Minimo 4 caracteres")]
    public string Name { get; set; }
+   
    [Required (ErrorMessage = "Data de nascimento é um campo obrigatório.")]
    public DateTime BirthDate { get; set; }
 
@@ -16,12 +16,10 @@ public class EditorUserViewModel
    public string Contact { get; set; }
 
    [Required (ErrorMessage = "Email é um campo obrigatório")]
-   [DataType(DataType.EmailAddress, ErrorMessage = "Formato inválido")]
    [EmailAddress]
    public string Email { get; set; }
 
    [Required]
-   [PasswordPropertyText]
    public string Password { get; set; }
    
 }

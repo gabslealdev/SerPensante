@@ -9,8 +9,8 @@ public static class RoleClaimsExtension
     {
         var result = new List<Claim>
         {
-            new(ClaimTypes.Name, user.Email),
-            new(ClaimTypes.Role, user.Role.ToString())
+            new(ClaimTypes.Name, user.Email), //User.Identity.Name
+            new(ClaimTypes.Role, user.Role.ToString()) //User.IsInRole
         };
         return result;
     }

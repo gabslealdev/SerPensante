@@ -10,13 +10,15 @@ using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 using System.Text.RegularExpressions;
 using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SerPensanteApi.Controllers;
 
+[Authorize(Roles = "Administrator")]
 [ApiController]
 public class AccountController : ControllerBase
 {
-    [HttpGet("students")]
+    [HttpGet("account/students")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
@@ -50,6 +52,7 @@ public class AccountController : ControllerBase
             return StatusCode(500, new ResultViewModel<Student>("Falha interna no servidor"));
         }
     }
+    [AllowAnonymous]
     [HttpPost("account/students")]
     public async Task<IActionResult> PostStudentsAsync([FromBody] EditorUserViewModel model, [FromServices] SpenDataContext context)
     {
@@ -88,7 +91,7 @@ public class AccountController : ControllerBase
         }
     }
 
-
+    [AllowAnonymous]
     [HttpPost("account/students/login")]
     public async Task<IActionResult> StudentLogin([FromBody] LoginViewModel model, [FromServices] SpenDataContext context, [FromServices] TokenService tokenService)
     {
@@ -116,7 +119,7 @@ public class AccountController : ControllerBase
         }
 
     }
-
+    [Authorize(Roles = "Student")]
     [HttpPut("account/students/update/{id:int}")]
     public async Task<IActionResult> PutAsync([FromBody] EditorUserViewModel model, [FromRoute] int id, [FromServices] SpenDataContext context)
     {
@@ -174,7 +177,7 @@ public class AccountController : ControllerBase
         }
 
     }
-    
+    [Authorize(Roles = "Student")]
     [HttpPost("accounts/students/upload-image")]
     public async Task<IActionResult> UploadImage([FromBody] UploadImageViewModel model, [FromServices] SpenDataContext context)
     {

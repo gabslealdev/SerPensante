@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using SerPensanteApi;
 using SerPensanteApi.Services;
 using SerPensanteApi.Data;
+using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,18 +13,13 @@ ConfigureMvc(builder);
 ConfigureService(builder);
 
 var app = builder.Build();
-LoadConfiguration(app);
+Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
 
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseStaticFiles();
 app.Run();
-
-void LoadConfiguration(WebApplication app)
-{
-    Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
-}
 
 void ConfigureAuthentication(WebApplicationBuilder buider)
 {
@@ -50,6 +46,9 @@ void ConfigureMvc(WebApplicationBuilder builder)
     builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
         {
             options.SuppressModelStateInvalidFilter = true;
+        }).AddJsonOptions(x => {
+            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
         });
 }
 

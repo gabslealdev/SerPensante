@@ -4,14 +4,16 @@ using SerPensanteApi.Extensions;
 using SerPensanteApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace SerPensanteApi.Controllers;
 
-
+[Authorize (Roles = "Administrator")]
 [ApiController]
 public class SubjectController : ControllerBase
 {
+    [AllowAnonymous]
     [HttpGet("subjects")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
@@ -26,6 +28,7 @@ public class SubjectController : ControllerBase
         }
     }
 
+    [AllowAnonymous]
     [HttpGet("subjects/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {

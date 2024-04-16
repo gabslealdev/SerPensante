@@ -16,13 +16,12 @@ namespace SerPensanteApi.Controllers;
 [ApiController]
 public class AdminAccountController : ControllerBase
 {
+    [Authorize(Roles = "Administrator")]
     [HttpPost("account/admin")]
     public async Task<IActionResult> PostAdminAsync([FromBody] EditorUserViewModel model, [FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<User>(ModelState.GetErrors()));
-
-        var password = PasswordGenerator.Generate(length: 16, includeSpecialChars: true, upperCase: false);
 
         var admin = new Administrator
         {
@@ -30,8 +29,8 @@ public class AdminAccountController : ControllerBase
             BirthDate = model.BirthDate,
             Contact = model.Contact,
             Email = model.Email,
-            PasswordHash = PasswordHasher.Hash(password),
-            Image = "src/profile/student/images",
+            PasswordHash = PasswordHasher.Hash(model.Password),
+            Image = " ",
             Role = Role.Administrator
         };
 
@@ -44,7 +43,7 @@ public class AdminAccountController : ControllerBase
             {
                 admin = admin.Email,
                 admin.Role,
-                password
+                model.Password
             }));
         }
         catch (DbUpdateException)
@@ -58,6 +57,7 @@ public class AdminAccountController : ControllerBase
 
     }
 
+    [Authorize(Roles = "Administrator")]
     [HttpPost("account/admin/login")]
     public async Task<IActionResult> AdminLogin([FromBody] LoginViewModel model, [FromServices] TokenService tokenService, [FromServices] SpenDataContext context)
     {

@@ -5,13 +5,15 @@ using SerPensanteApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 using SerPensanteApi.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SerPenApi.Controllers;
 
 [ApiController]
 public class LessonController : ControllerBase
 {
-    [HttpGet("lesson")]
+    [AllowAnonymous]
+    [HttpGet("lessons")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
@@ -25,7 +27,8 @@ public class LessonController : ControllerBase
         }
     }
 
-    [HttpGet("lesson/{id:int}")]
+    [AllowAnonymous]
+    [HttpGet("lessons/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -43,7 +46,9 @@ public class LessonController : ControllerBase
         }
     }
 
-    [HttpPost("lesson")]
+    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Teacher")]
+    [HttpPost("lessons")]
     public async Task<IActionResult> PostAsync([FromServices] SpenDataContext context, [FromBody] CreateLessonViewModel model)
     {
         
@@ -57,6 +62,10 @@ public class LessonController : ControllerBase
             if (teacher == null || course == null)
                 return BadRequest(new ResultViewModel<Lesson>("Teacher ou Course não cadastrado"));
 
+            long totalTicks = course.Duration.Ticks + model.Duration.Ticks;
+            var totalSpan = new TimeSpan(totalTicks);
+            course.Duration = new DateTime(1900, 01, 01, 00, 00, 00).Add(totalSpan); 
+
             var lesson = new Lesson
             {
                 Title = model.Title,
@@ -68,11 +77,12 @@ public class LessonController : ControllerBase
                 CourseId = model.CourseId
             };
 
+            
+            context.Courses.Update(course);
             await context.Lessons.AddAsync(lesson);
             await context.SaveChangesAsync();
 
             return Created($"lesson/{lesson.Id}", new ResultViewModel<Lesson>(lesson));
-
 
         }
         catch (DbUpdateException)
@@ -85,7 +95,8 @@ public class LessonController : ControllerBase
         }
     }
 
-    [HttpPut("lesson/{id:int}")]
+    [Authorize(Roles = "Administrator")]
+    [HttpPut("lessons/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] UpdateLessonViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -113,16 +124,23 @@ public class LessonController : ControllerBase
         }
     }
 
-    [HttpDelete("lesson/{id:int}")]
-    public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
+    [Authorize(Roles = "Administrator")]
+    [HttpDelete("course={courseid}/lesson={lessonid:int}")]
+    public async Task<IActionResult> DeleteAsync([FromRoute] int lessonid, [FromRoute] int courseid, [FromServices] SpenDataContext context)
     {
         try
         {
-            var lesson = await context.Lessons.FirstOrDefaultAsync(a => a.Id == id);
+            var course = await context.Courses.FirstOrDefaultAsync(c => c.Id == courseid);
+            var lesson = await context.Lessons.FirstOrDefaultAsync(a => a.Id == lessonid);
 
-            if (lesson == null)
+            if (lesson == null || course == null)
                 return BadRequest(new ResultViewModel<Lesson>("Não foi possivel encontrar está aula"));
 
+            long totalTicks = course.Duration.Ticks - lesson.Duration.Ticks;
+            var totalSpan = new TimeSpan(totalTicks);
+            course.Duration = new DateTime(1900, 1, 1, 0, 0, 0).Add(totalSpan);
+
+            context.Courses.Update(course);
             context.Lessons.Remove(lesson);
             await context.SaveChangesAsync();
 
