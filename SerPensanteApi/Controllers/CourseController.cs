@@ -14,14 +14,16 @@ public class CourseController : ControllerBase
 {
     [AllowAnonymous]
     [HttpGet("courses")]
-    public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
+    public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context,[FromQuery] int pageSize = 25, [FromQuery] int page = 0)
     {
         try
         {
+            var count = await context.Courses.AsNoTracking().CountAsync();
             var courses = await context
             .Courses
             .AsNoTracking()
             .Include(x => x.Lessons)
+            .ThenInclude(x => x.Teacher)
             .Select(x => new ListCoursesViewModel{
                 Id = x.Id,
                 Name = x.Name,
@@ -29,13 +31,28 @@ public class CourseController : ControllerBase
                 CreatedAt = x.CreatedAt,
                 Lessons = x.Lessons
             })
+            .Skip(page * pageSize)
+            .Take(pageSize)
+            .OrderByDescending(x => x.CreatedAt)
             .ToListAsync();
-            return Ok(courses);
+            return Ok(new ResultViewModel<dynamic>(new {
+                total = count,
+                page,
+                pageSize,
+                courses
+            }));
         }
         catch
         {
             return StatusCode(500, new ResultViewModel<Course>("Falha interna no servidor"));
         }
+    }
+
+    [HttpGet("courses/subject/{subject}")]
+    public async Task<IActionResult> GetSubjectsCourseAsync([FromServices] SpenDataContext context, [FromRoute] string subject)
+    {
+        var courses = await context.Courses.Where(x => x.Subject.Name == subject).AsNoTracking().ToListAsync();
+        return Ok(new ResultViewModel<List<Course>>(courses));
     }
 
     [AllowAnonymous]
@@ -130,7 +147,7 @@ public class CourseController : ControllerBase
     }
 
     [Authorize(Roles = "Administrator")]
-    [HttpDelete("courses/{id:int}")]
+    [HttpDelete("courses/{id:int}")] 
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -140,8 +157,6 @@ public class CourseController : ControllerBase
             if (course == null)
                 return BadRequest(new ResultViewModel<Course>("Não foi possivel encontrar um Course com este id"));
 
-
-            
             context.Courses.Remove(course);
             await context.SaveChangesAsync();
 
@@ -154,8 +169,8 @@ public class CourseController : ControllerBase
     }
 
     [Authorize(Roles = "Student")]
-    [HttpPost("courses={id:int}/enrollment/")]
-    public async Task<IActionResult> EnrollmentCourse([FromServices] SpenDataContext context, [FromRoute] int id )
+    [HttpPost("enrollment/courses")]
+    public async Task<IActionResult> EnrollmentCourse([FromServices] SpenDataContext context, [FromQuery] int id )
     {
         var course = await context.Courses.FirstOrDefaultAsync(x => x.Id == id);
         var student = await context.Students.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);

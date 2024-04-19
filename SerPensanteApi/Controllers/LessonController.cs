@@ -18,13 +18,33 @@ public class LessonController : ControllerBase
     {
         try
         {
-            var lesson = await context.Lessons.ToListAsync();
+            var lesson = await context
+            .Lessons
+            .AsNoTracking()
+            .Include(x => x.Teacher)
+            .ToListAsync();
             return Ok(new ResultViewModel<List<Lesson>>(lesson));
         }
         catch
         {
             return StatusCode(500, new ResultViewModel<Lesson>("Falha interna do servidor"));
         }
+    }
+
+    [HttpGet("lessons/course")]
+    public async Task<IActionResult> GetLessonsCourse([FromServices] SpenDataContext context, [FromQuery] int id)
+    {
+        var lessons = await context
+        .Lessons
+        .AsNoTracking()
+        .Where(x => x.CourseId == id)
+        .Include(x => x.Teacher)
+        .ToListAsync();
+        if (lessons == null)
+            return BadRequest();
+        
+
+        return Ok(lessons);
     }
 
     [AllowAnonymous]

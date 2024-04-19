@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZykXuP6FhSi9yJTfgBBcMKk78Jk4mnzkB10ru7GlWhg=",
+  "Hash": "7edRDmyA9X8w/m//VU/japtD1IFQYPka1YOB9IADvaA=",
   "Source": "SerPenApi",
   "BasePath": "_content/SerPenApi",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "SerPenApi\\wwwroot",
       "Source": "SerPenApi",
-      "ContentRoot": "c:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\wwwroot\\",
       "BasePath": "_content/SerPenApi",
       "Pattern": "**"
     }

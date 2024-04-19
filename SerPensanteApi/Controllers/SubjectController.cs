@@ -19,7 +19,11 @@ public class SubjectController : ControllerBase
     {
         try
         {
-            var subjects = await context.Subjects.ToListAsync();
+            var subjects = await context
+            .Subjects
+            .AsNoTracking()
+            .Include(x => x.Courses)
+            .ToListAsync();
             return Ok(new ResultViewModel<List<Subject>>(subjects));
         }
         catch
