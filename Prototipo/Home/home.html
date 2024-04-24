@@ -4,97 +4,123 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" href="../stylesheet/home.css" >
-        <link rel="stylesheet" href="../stylesheet/reset.css" >
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-        
-        <title>Home | Seres Pensantes </title>
-      </head>
-    <body>
-        <header class="header" id="header">
-          <img src="../src/seres_pensantes_reverse.png" alt="logo-Seres-Pensantes" class="logo" width="256px">
-          <nav class="navigation">
-            <ul class="nav-links">
-              <li class="nav-link"><a href="#search">Home</a></li>
-              <li class="nav-link"><a href="../Matricula/cursos.html">Cursos</a></li>
-              <li class="nav-link"><a href="../Matricula/professores.html">Professores</a></li>
-              <li class="nav-link"><a href="../Matricula/materias.html">Matérias</a></li>
-            </ul>
-          </nav>
-          <div class="login">
-            <a href="../Login/login.html">Entrar</a>
-          </div>
 
-        </header>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="../stylesheet/home.css">
+  <link rel="stylesheet" href="../stylesheet/reset.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel='stylesheet'
+    href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <title>Home | Seres Pensantes </title>
+</head>
 
-        <section id="search">
-          <div class="section-search">
-            <div class="content-search">
-              <form>
-                <input type="text" placeholder="Pesquisa" name="search" class="searchBar">
-                <button type="submit" class="searchBut"><span class="material-symbols-outlined">search</span></button>
-              </form>
-            </div>
-          </div>
-        </section>  
-          <div class="container">
-            <button class="arrow-left control" aria-label="Previsous Image">
-              <
-            </button>
-            <button class="arrow-right control" aria-label="Next Image">
-              >
-            </button>
-              <div class="section-wrapper">
-                <div class="sections">
-                  <div class="section-content" id="section-one">
-                    <div class="over">
-                      <h2>Plataforma gratuita de cursos com conteúdo escolar e pré-vestibular</h2>
-                      <p>
-                        Aulas de todas as matérias do ensino médio 
-                        para te apoiar na sua formação, curso pré-vestibular 
-                        com professores voluntários conteúdo 100% gratuito
-                        feito pela comunidade para a comunidade.
-                      </p>
-                      <button>Matricule-se</button>
-                    </div>  
-                  </div>
-                  <div class="section-content " id="section-two">
-                      <div class="over">
-                        <h2>Professores, docentes e universitários juntem se a nós na revolução digital</h2>
-                        <p>
-                          Buscamos levar conhecimento para todas 
-                          as camadas da sociedades, afim de descentralizar 
-                          o saber transformando a sociedade a partir da sua força
-                          ajude nos a tornar nosso mundo melhor e equitativo. 
-                          </p>
-                          <button>Cadastre-se</button> 
-                      </div>
-                  </div>
-                  <div class="section-content" id="section-three">
-                      <h1>Alunos nós de apoiamos</h1>
-                  </div>
-                </div>
-              </div>
-          </div>
-        
-        <footer class="footer">
-          <ul class="footer-links">
-            <li class="footer-link">
-              <a href="github">GitHub</a>
-            </li>
-            <li class="footer-link"> 
-              <a href="linkedin">LinkedIn</a>
-            </li>
-            <li class="footer-link">
-              <a href="whatsapp">whatsapp</a>
-            </li>
-          </ul>
-        </footer>
-        <script src="../JS/carousel.js"></script>
-    </body>
+<body>
+  <header class="header" id="header">
+    <img src="../src/seres_pensantes_reverse.png" alt="logo-Seres-Pensantes" class="logo" width="256px">
+    <nav class="navigation">
+      <ul class="nav-links">
+        <li class="nav-link"><a href="#search">Home</a></li>
+        <li class="nav-link"><a href="#subject">Matérias</a></li>
+        <li class="nav-link"><a href="../Matricula/professores.html">Professores</a></li>
+        <li class="nav-link"><a href="../Matricula/materias.html">Matérias</a></li>
+      </ul>
+    </nav>
+    <div class="login">
+      <a href="../Login/login.html">Entrar
+      </a>
+      <span class="material-symbols-outlined">
+        login
+      </span>
+    </div>
+  </header>
+  <section class="section-search" id="search">
+    <div class="search-text slider" id="text">
+      <h1>Cursos de apoio à grade escolar</h1>
+      <p>Ensino fundamental, ensino médio, cursos pré-vestibular e muito mais!</p>
+      <p>encontre um curso que goste e <a href="" class="RegistrationLink">matricule-se JÁ!</a></p>
+    </div>
+    <div class="content-search sliderout">
+      <form>
+        <input type="text" placeholder="Pesquisa" name="search" class="searchBar">
+        <button type="submit" class="searchBut"><span class="material-symbols-outlined">search</span></button>
+      </form>
+    </div>
+  </section>
+  <section class="section-courses">
+    <h2>Lista de Cursos</h2>
+    <div class="boxes">
+      <div class="box" id="exact">
+        <i class="fi fi-rr-calculator-simple"></i>
+        <p>Exatas</p>
+      </div>
+      <div class="box">
+        <i class="fi fi-rr-meeting"></i>
+        <p>Humanas</p>
+      </div>
+      <div class="box">
+        <i class="fi fi-rr-dna"></i>
+        <p>Biologicas</p>
+      </div>
+      <div class="box">
+        <i class="fi fi-rr-user-robot"></i>
+        <p>Tecnologia</p>
+      </div>
+    </div>
+    <div class="courseList">
+      <div class="courses" id="exactCourse">
+        <ul>
+          <li>Física - I</li>
+          <li>Física - II</li>
+          <li>Física - III</li>
+          <li>Matemática Aplicada</li>
+          <li>Geometria Analítica</li>
+        </ul>
+      </div>
+      <div class="courses" id="humanCourse">
+        <ul>
+          <li>Filosofia - I</li>
+          <li>Geografia - I</li>
+          <li>Historia - I</li>
+          <li>História do Brasil</li>
+          <li>Historia da Africa</li>
+        </ul>
+      </div>
+      <div class="courses" id="BiologicalCourse">
+        <ul>
+          <li>Biologia - I</li>
+          <li>Biologia - II</li>
+          <li>Biologia - III</li>
+        </ul>
+      </div>
+      <div class="courses" id="TechCourse">
+        <ul>
+          <li>Introdução a programação</li>
+          <li>Lógica de programação</li>
+          <li>Python - I</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <ul class="footer-links">
+      <li class="footer-link">
+        <a href="github">GitHub</a>
+      </li>
+      <li class="footer-link">
+        <a href="linkedin">LinkedIn</a>
+      </li>
+      <li class="footer-link">
+        <a href="whatsapp">whatsapp</a>
+      </li>
+    </ul>
+  </footer>
+  <script src="../JS/carousel.js"></script>
+</body>
+
 </html>
