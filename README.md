@@ -6,6 +6,6 @@ passando por todas as etapas do desenvolvimento, desde o **levantamento dos requ
 com **Angular** aproveitando cada etapa para aprofundar os conhecimentos e superar os desafios.
 
 ## FERRAMENTAS 
-![Static Badge](https://img.shields.io/badge/SQLSERVE-blue)  ![Static Badge](https://img.shields.io/badge/ASPNETCORE-purple)  ![Static Badge](https://img.shields.io/badge/HTML-CSS-yellow)
+![Static Badge](https://img.shields.io/badge/SQLSERVER-blue)  ![Static Badge](https://img.shields.io/badge/ASPNETCORE-purple)  ![Static Badge](https://img.shields.io/badge/HTML-CSS-yellow)
  ![Static Badge](https://img.shields.io/badge/Angular-red)
 
