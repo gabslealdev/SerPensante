@@ -9,3 +9,14 @@ com **Angular** aproveitando cada etapa para aprofundar os conhecimentos e super
 ![Static Badge](https://img.shields.io/badge/SQLSERVER-blue)  ![Static Badge](https://img.shields.io/badge/ASPNETCORE-purple)  ![Static Badge](https://img.shields.io/badge/HTML-CSS-yellow)
  ![Static Badge](https://img.shields.io/badge/ANGULAR-red)
 
+## ETAPAS ✔️
+
+Etapa     | Produto | Status
+--------- | ------ | ------
+Fazer o levantamentos dos requisitos necessários| MER | ![Static Badge](https://img.shields.io/badge/OK-green)  
+Criar um banco de dados conforme o MER | Banco de Dados  | ![Static Badge](https://img.shields.io/badge/OK-green) 
+Fazer o CRUD da API conforme o banco de dados | CRUD | ![Static Badge](https://img.shields.io/badge/OK-green)
+Documentar a API e finalizar o backend | API | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
+Definir o design da UI | PROTÓTIPO UI | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
+Criar o frontend em Angular | FRONTEND | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
+Publicar o projeto | APP | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
