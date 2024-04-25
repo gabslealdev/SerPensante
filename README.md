@@ -18,5 +18,5 @@ Criar um banco de dados conforme o MER | BDD  | ![Static Badge](https://img.shie
 Fazer o CRUD da API conforme o banco de dados | CRUD | ![Static Badge](https://img.shields.io/badge/OK-green)
 Documentar a API e finalizar o backend | API | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
 Definir o design da UI | PROTÓTIPO UI | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
-Criar o frontend em Angular | FRONTEND | ![Static Badge](https://img.shields.io/badge/NO-yellow)
+Criar o frontend em Angular | FRONTEND | ![Static Badge](https://img.shields.io/badge/NO-red)
 Publicar o projeto | APP | ![Static Badge](https://img.shields.io/badge/NO-red)
