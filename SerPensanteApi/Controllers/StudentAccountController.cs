@@ -204,7 +204,7 @@ public class AccountController : ControllerBase
         var student = await context.Students.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);
 
         if (student == null)
-            return BadRequest(new ResultViewModel<string>("Usuário não encontrado"));
+            return NotFound(new ResultViewModel<string>("Usuário não encontrado"));
 
         student.Image = blobclient.Uri.AbsoluteUri;
         try

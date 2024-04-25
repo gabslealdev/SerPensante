@@ -5,6 +5,7 @@ using SerPensanteApi.ViewModels;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Caching.Memory;
 
 
 namespace SerPensanteApi.Controllers;
@@ -21,7 +22,6 @@ public class SubjectController : ControllerBase
         {
             var subjects = await context
             .Subjects
-            .AsNoTracking()
             .Include(x => x.Courses)
             .ToListAsync();
             return Ok(new ResultViewModel<List<Subject>>(subjects));

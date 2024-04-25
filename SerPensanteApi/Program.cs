@@ -5,6 +5,9 @@ using SerPensanteApi;
 using SerPensanteApi.Services;
 using SerPensanteApi.Data;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.IO.Compression;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +20,8 @@ Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseResponseCompression();
+app.UseStaticFiles();
 app.MapControllers();
 app.UseStaticFiles();
 app.Run();
@@ -24,6 +29,17 @@ app.Run();
 void ConfigureAuthentication(WebApplicationBuilder buider)
 {
     var key = Encoding.ASCII.GetBytes(Configuration.JwtKey);
+    
+    builder.Services.AddResponseCompression(options =>
+    {
+        options.Providers.Add<GzipCompressionProvider>();
+        
+    });
+
+    builder.Services.Configure<GzipCompressionProviderOptions>(options => 
+    {
+        options.Level = CompressionLevel.Optimal;
+    });
 
     builder.Services.AddAuthentication(x =>
     {

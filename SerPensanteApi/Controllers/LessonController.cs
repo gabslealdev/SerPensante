@@ -6,6 +6,7 @@ using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 using SerPensanteApi.Extensions;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.RegularExpressions;
 
 namespace SerPenApi.Controllers;
 
@@ -42,7 +43,7 @@ public class LessonController : ControllerBase
         .ToListAsync();
         if (lessons == null)
             return BadRequest();
-        
+
 
         return Ok(lessons);
     }
@@ -66,12 +67,11 @@ public class LessonController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Administrator")]
     [Authorize(Roles = "Teacher")]
     [HttpPost("lessons")]
     public async Task<IActionResult> PostAsync([FromServices] SpenDataContext context, [FromBody] CreateLessonViewModel model)
     {
-        
+
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<Lesson>(ModelState.GetErrors()));
         try
@@ -84,7 +84,7 @@ public class LessonController : ControllerBase
 
             long totalTicks = course.Duration.Ticks + model.Duration.Ticks;
             var totalSpan = new TimeSpan(totalTicks);
-            course.Duration = new DateTime(1900, 01, 01, 00, 00, 00).Add(totalSpan); 
+            course.Duration = new DateTime(1900, 01, 01, 00, 00, 00).Add(totalSpan);
 
             var lesson = new Lesson
             {
@@ -97,7 +97,7 @@ public class LessonController : ControllerBase
                 CourseId = model.CourseId
             };
 
-            
+
             context.Courses.Update(course);
             await context.Lessons.AddAsync(lesson);
             await context.SaveChangesAsync();
@@ -115,7 +115,47 @@ public class LessonController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Teacher")]
+    [HttpPost("lessons/video/{id:int}")]
+    public async Task<IActionResult> AddLessonAsync([FromServices] SpenDataContext context, [FromBody] UploadLessonViewModel model, [FromRoute] int id)
+    {
+        var fileName = Guid.NewGuid().ToString() + ".mp4";
+
+        var data = new Regex(@"^data:image\/[a-z]+;base64,").Replace(model.Base64Lesson, "");
+
+        var videoBytes = Convert.FromBase64String(data);
+        
+        try
+        {
+            await System.IO.File.WriteAllBytesAsync($"wwwroot/Lessons/{fileName}", videoBytes);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new ResultViewModel<string>("Falha interna no servidor"));
+        }
+
+        var lesson = context.Lessons.FirstOrDefault(x => x.Id == id);
+        
+        if (lesson == null)
+            return NotFound(new ResultViewModel<Lesson>("Aula não encontrada"));
+         
+        lesson.LinkUrl = $"https://localhost:0000/lessons/{fileName}";
+
+        try
+        {
+            context.Lessons.Update(lesson);
+            await context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new ResultViewModel<string>("Falha interna no servidor"));
+        }
+
+        return Ok(new ResultViewModel<string>("Video aula atualizada com sucesso!", null));
+    }
+
+
+    [Authorize(Roles = "Teacher")]
     [HttpPut("lessons/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] UpdateLessonViewModel model, [FromServices] SpenDataContext context)
     {
@@ -144,7 +184,7 @@ public class LessonController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Teacher")]
     [HttpDelete("course={courseid}/lesson={lessonid:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int lessonid, [FromRoute] int courseid, [FromServices] SpenDataContext context)
     {
