@@ -22,9 +22,9 @@ Publicar o projeto | APP | ![Static Badge](https://img.shields.io/badge/NO-red)
 
 ## REFERÊNCIAS 📚
 <sup>Cursos e livros que foram importantes para este aprendizado</sup>
-[Fundamentos de SQL SERVER](https://balta.io/player/assistir/cae580e7-d215-4d08-9414-fe988713cc97) - Balta.io
-[Fundamentos do EntityFramework](https://balta.io/player/assistir/dbb3fad9-8c65-4509-929f-b5fbb2622e8e) - Balta.io
-[Fundamentos do ASPNETCORE 6](https://balta.io/player/assistir/8407be55-4137-48ae-baf5-470eef47a297) - Balta.io
-[ASP.NET core MVC - Aplicações modernas em conjunto com o Entity Framework](https://www.casadocodigo.com.br/products/livro-aspnet-core-mvc#:~:text=Conte%C3%BAdo,em%20Windows%2C%20Mac%20e%20Linux.) - Casa do código
-[Construindo Aplicações Web Com o Novo Angular (4, 5 e 6)](https://www.udemy.com/course/angular-pt/learn/lecture/7032632#overview) - Prof. Tarso Bessa
+1. [Fundamentos de SQL SERVER](https://balta.io/player/assistir/cae580e7-d215-4d08-9414-fe988713cc97) - Balta.io
+2. [Fundamentos do EntityFramework](https://balta.io/player/assistir/dbb3fad9-8c65-4509-929f-b5fbb2622e8e) - Balta.io
+3. [Fundamentos do ASPNETCORE 6](https://balta.io/player/assistir/8407be55-4137-48ae-baf5-470eef47a297) - Balta.io
+4. [ASP.NET core MVC - Aplicações modernas em conjunto com o Entity Framework](https://www.casadocodigo.com.br/products/livro-aspnet-core-mvc#:~:text=Conte%C3%BAdo,em%20Windows%2C%20Mac%20e%20Linux.) - Casa do código
+5. [Construindo Aplicações Web Com o Novo Angular (4, 5 e 6)](https://www.udemy.com/course/angular-pt/learn/lecture/7032632#overview) - Prof. Tarso Bessa
 
