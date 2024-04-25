@@ -13,8 +13,8 @@ com **Angular** aproveitando cada etapa para aprofundar os conhecimentos e super
 
 Etapa     | Produto | Status
 --------- | ------ | ------
-Fazer o levantamentos dos requisitos necessários| MER | ![Static Badge](https://img.shields.io/badge/OK-green)  
-Criar um banco de dados conforme o MER | BDD  | ![Static Badge](https://img.shields.io/badge/OK-green) 
+Fazer o levantamentos dos requisitos necessários| [MER](https://lucid.app/lucidchart/ec7844d5-7e9f-41d0-9db9-c75ba1683055/edit?viewport_loc=-403%2C201%2C2694%2C1119%2C0_0&invitationId=inv_835ce45c-f071-41a2-8a15-11cb6a4e24fe) | ![Static Badge](https://img.shields.io/badge/OK-green)  
+Criar um banco de dados conforme o MER | [BDD](https://github.com/gabslealdev/SerPensante/blob/main/Script/serpensante.sql)  | ![Static Badge](https://img.shields.io/badge/OK-green) 
 Fazer o CRUD da API conforme o banco de dados | CRUD | ![Static Badge](https://img.shields.io/badge/OK-green)
 Documentar a API e finalizar o backend | API | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
 Definir o design da UI | PROTÓTIPO UI | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
