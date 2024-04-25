@@ -7,5 +7,5 @@ com **Angular** aproveitando cada etapa para aprofundar os conhecimentos e super
 
 ## FERRAMENTAS 
 ![Static Badge](https://img.shields.io/badge/SQLSERVER-blue)  ![Static Badge](https://img.shields.io/badge/ASPNETCORE-purple)  ![Static Badge](https://img.shields.io/badge/HTML-CSS-yellow)
- ![Static Badge](https://img.shields.io/badge/Angular-red)
+ ![Static Badge](https://img.shields.io/badge/ANGULAR-red)
 
