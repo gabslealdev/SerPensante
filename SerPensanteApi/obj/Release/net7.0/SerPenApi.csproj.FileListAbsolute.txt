@@ -74,3 +74,8 @@ C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Release\net7.0\refint\Se
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Release\net7.0\SerPenApi.pdb
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Release\net7.0\SerPenApi.genruntimeconfig.cache
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Release\net7.0\ref\SerPenApi.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Release\net7.0\Microsoft.OpenApi.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Release\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Release\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Release\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Release\net7.0\SerPenApi.MvcApplicationPartsAssemblyInfo.cs

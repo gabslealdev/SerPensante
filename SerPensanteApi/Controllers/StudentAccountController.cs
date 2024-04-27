@@ -14,11 +14,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SerPensanteApi.Controllers;
 
-[Authorize(Roles = "Administrator")]
+
 [ApiController]
 public class AccountController : ControllerBase
 {
-    [HttpGet("account/students")]
+    [HttpGet("v1/account/students")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
@@ -32,7 +32,7 @@ public class AccountController : ControllerBase
         }
     }
 
-    [HttpGet("account/students/{id:int}")]
+    [HttpGet("v1/account/students/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -53,7 +53,7 @@ public class AccountController : ControllerBase
         }
     }
     [AllowAnonymous]
-    [HttpPost("account/students")]
+    [HttpPost("v1/account/students")]
     public async Task<IActionResult> PostStudentsAsync([FromBody] EditorUserViewModel model, [FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
@@ -92,7 +92,7 @@ public class AccountController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost("account/students/login")]
+    [HttpPost("v1/account/students/login")]
     public async Task<IActionResult> StudentLogin([FromBody] LoginViewModel model, [FromServices] SpenDataContext context, [FromServices] TokenService tokenService)
     {
         if (!ModelState.IsValid)
@@ -120,7 +120,7 @@ public class AccountController : ControllerBase
 
     }
     [Authorize(Roles = "Student")]
-    [HttpPut("account/students/update/{id:int}")]
+    [HttpPut("v1/account/students/update/{id:int}")]
     public async Task<IActionResult> PutAsync([FromBody] EditorUserViewModel model, [FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -153,7 +153,7 @@ public class AccountController : ControllerBase
         }
     }
 
-    [HttpDelete("account/students/remove/{id:int}")]
+    [HttpDelete("v1/account/students/remove/{id:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -178,7 +178,7 @@ public class AccountController : ControllerBase
 
     }
     [Authorize(Roles = "Student")]
-    [HttpPost("accounts/students/upload-image")]
+    [HttpPost("v1/accounts/students/upload-image")]
     public async Task<IActionResult> UploadImage([FromBody] UploadImageViewModel model, [FromServices] SpenDataContext context)
     {
         var fileName = Guid.NewGuid().ToString() + ".jpg";

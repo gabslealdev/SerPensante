@@ -17,8 +17,7 @@ namespace SerPensanteApi.Controllers;
 [ApiController]
 public class TeacherAccountController : ControllerBase
 {
-    [AllowAnonymous]
-    [HttpGet("account/teachers")]
+    [HttpGet("v1/account/teachers")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
@@ -42,8 +41,8 @@ public class TeacherAccountController : ControllerBase
         }
 
     }
-    [Authorize]
-    [HttpGet("account/teachers/{id:int}")]
+
+    [HttpGet("v1/account/teachers/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -60,8 +59,7 @@ public class TeacherAccountController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Administrator")]
-    [HttpPost("account/teachers")]
+    [HttpPost("v1/account/teachers")]
     public async Task<IActionResult> PostTeacherAsync([FromBody] EditorUserViewModel model,[FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
@@ -101,8 +99,7 @@ public class TeacherAccountController : ControllerBase
         }
     }
 
-
-    [HttpPost("account/teachers/login")]
+    [HttpPost("v1/account/teachers/login")]
     public async Task<IActionResult> TeacherLogin([FromBody] LoginViewModel model, [FromServices] SpenDataContext context, [FromServices] TokenService tokenService)
     {
         if (!ModelState.IsValid)
@@ -130,7 +127,7 @@ public class TeacherAccountController : ControllerBase
 
     }
 
-    [HttpPut("account/teachers/update/{id:int}")]
+    [HttpPut("v1/account/teachers/update/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] EditorUserViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -164,8 +161,7 @@ public class TeacherAccountController : ControllerBase
         }
     }
 
-
-    [HttpDelete("account/teachers/remove/{id:int}")]
+    [HttpDelete("v1/account/teachers/remove/{id:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -189,7 +185,7 @@ public class TeacherAccountController : ControllerBase
 
     }
 
-    [HttpPost("account/teachers/upload-image")]
+    [HttpPost("v1/account/teachers/upload-image")]
     public async Task<IActionResult> UploadImage([FromBody] UploadImageViewModel model, [FromServices] SpenDataContext context)
     {
         var fileName = Guid.NewGuid().ToString() + ".jpg";

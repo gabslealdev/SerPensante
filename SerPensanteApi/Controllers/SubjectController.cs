@@ -10,12 +10,11 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace SerPensanteApi.Controllers;
 
-[Authorize (Roles = "Administrator")]
+
 [ApiController]
 public class SubjectController : ControllerBase
 {
-    [AllowAnonymous]
-    [HttpGet("subjects")]
+    [HttpGet("v1/subjects")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
@@ -32,8 +31,7 @@ public class SubjectController : ControllerBase
         }
     }
 
-    [AllowAnonymous]
-    [HttpGet("subjects/{id:int}")]
+    [HttpGet("v1/subjects/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -52,7 +50,7 @@ public class SubjectController : ControllerBase
 
     }
 
-    [HttpPost("subjects")]
+    [HttpPost("v1/subjects")]
     public async Task<IActionResult> PostAsync([FromBody] EditorSubjectViewModel model, [FromServices] SpenDataContext context)
     {
         if(!ModelState.IsValid)
@@ -80,7 +78,7 @@ public class SubjectController : ControllerBase
         }
     }
 
-    [HttpPut("subjects/{id:int}")]
+    [HttpPut("v1/subjects/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] EditorSubjectViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -109,7 +107,7 @@ public class SubjectController : ControllerBase
         }
     }
 
-    [HttpDelete("subjects/{id:int}")]
+    [HttpDelete("v1/subjects/{id:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try

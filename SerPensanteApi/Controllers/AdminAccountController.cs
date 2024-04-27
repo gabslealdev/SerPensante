@@ -16,8 +16,7 @@ namespace SerPensanteApi.Controllers;
 [ApiController]
 public class AdminAccountController : ControllerBase
 {
-    [Authorize(Roles = "Administrator")]
-    [HttpPost("account/admin")]
+    [HttpPost("v1/admin")]
     public async Task<IActionResult> PostAdminAsync([FromBody] EditorUserViewModel model, [FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
@@ -31,7 +30,8 @@ public class AdminAccountController : ControllerBase
             Email = model.Email,
             PasswordHash = PasswordHasher.Hash(model.Password),
             Image = " ",
-            Role = Role.Administrator
+            Role = Role.Administrator,
+            Active = true
         };
 
         try
@@ -57,8 +57,7 @@ public class AdminAccountController : ControllerBase
 
     }
 
-    [Authorize(Roles = "Administrator")]
-    [HttpPost("account/admin/login")]
+    [HttpPost("v1/admin/login")]
     public async Task<IActionResult> AdminLogin([FromBody] LoginViewModel model, [FromServices] TokenService tokenService, [FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)

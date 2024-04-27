@@ -8,8 +8,9 @@ namespace SerPensanteApi.Controllers;
 public class HomeController : ControllerBase
 {
     [HttpGet("")]
-    public IActionResult Get()
+    public IActionResult Get(IConfiguration configuration)
     {
-        return Ok();
+        var env = configuration.GetValue<string>("Env");
+        return Ok(new { environment = env });
     }
 }

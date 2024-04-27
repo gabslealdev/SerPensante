@@ -53,10 +53,14 @@ C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.I
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.OpenApi.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\SecureIdentity.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.CodeDom.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\System.Drawing.Common.dll
@@ -84,6 +88,7 @@ C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.G
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.AssemblyInfoInputs.cache
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.AssemblyInfo.cs
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\staticwebassets\msbuild.SerPenApi.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\staticwebassets\msbuild.build.SerPenApi.props
@@ -99,3 +104,4 @@ C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\refint\SerP
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.pdb
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.genruntimeconfig.cache
 C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\obj\Debug\net7.0\ref\SerPenApi.dll
+C:\Users\Gabriel\Projects\SerPesante\SerPensanteApi\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll

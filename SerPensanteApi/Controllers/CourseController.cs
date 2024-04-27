@@ -12,8 +12,8 @@ namespace SerPenApi.Controllers;
 [ApiController]
 public class CourseController : ControllerBase
 {
-    [AllowAnonymous]
-    [HttpGet("courses")]
+
+    [HttpGet("v1/courses")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context,[FromQuery] int pageSize = 25, [FromQuery] int page = 0)
     {
         try
@@ -48,15 +48,14 @@ public class CourseController : ControllerBase
         }
     }
 
-    [HttpGet("courses/subject/{subject}")]
+    [HttpGet("v1/courses/subject/{subject}")]
     public async Task<IActionResult> GetSubjectsCourseAsync([FromServices] SpenDataContext context, [FromRoute] string subject)
     {
         var courses = await context.Courses.Where(x => x.Subject.Name == subject).AsNoTracking().ToListAsync();
         return Ok(new ResultViewModel<List<Course>>(courses));
     }
 
-    [AllowAnonymous]
-    [HttpGet("courses/{id:int}")]
+    [HttpGet("v1/courses/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -74,8 +73,7 @@ public class CourseController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Administrator")]
-    [HttpPost("courses")]
+    [HttpPost("v1/courses")]
     public async Task<IActionResult> PostAsync([FromBody] EditorCourseViewModel model, [FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
@@ -114,8 +112,7 @@ public class CourseController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Administrator")]
-    [HttpPut("courses/{id:int}")]
+    [HttpPut("v1/courses/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] EditorCourseViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -146,8 +143,7 @@ public class CourseController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Administrator")]
-    [HttpDelete("courses/{id:int}")] 
+    [HttpDelete("v1/courses/{id:int}")] 
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -168,9 +164,9 @@ public class CourseController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Student")]
-    [HttpPost("enrollment/courses")]
-    public async Task<IActionResult> EnrollmentCourse([FromServices] SpenDataContext context, [FromQuery] int id )
+    [Authorize(Roles = "User")]
+    [HttpPost("v1/courses/enrollment/{id:int}")]
+    public async Task<IActionResult> EnrollmentCourse([FromServices] SpenDataContext context, [FromRoute] int id )
     {
         var course = await context.Courses.FirstOrDefaultAsync(x => x.Id == id);
         var student = await context.Students.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);

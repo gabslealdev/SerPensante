@@ -1,4 +1,4 @@
-using SerPensanteApi.Models;
+
 
 namespace SerPensanteApi.ViewModels; 
 
@@ -25,6 +25,6 @@ public class ResultViewModel<T>
     }
 
 
-    public T Data { get; set; }
-    public List<string> Errors { get; private set; }
+    public T Data { get; private set; }
+    public List<string> Errors { get; private set; } = new();
 }

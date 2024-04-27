@@ -13,8 +13,8 @@ namespace SerPenApi.Controllers;
 [ApiController]
 public class LessonController : ControllerBase
 {
-    [AllowAnonymous]
-    [HttpGet("lessons")]
+
+    [HttpGet("v1/lessons")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
@@ -32,7 +32,7 @@ public class LessonController : ControllerBase
         }
     }
 
-    [HttpGet("lessons/course")]
+    [HttpGet("v1/lessons/course")]
     public async Task<IActionResult> GetLessonsCourse([FromServices] SpenDataContext context, [FromQuery] int id)
     {
         var lessons = await context
@@ -48,8 +48,7 @@ public class LessonController : ControllerBase
         return Ok(lessons);
     }
 
-    [AllowAnonymous]
-    [HttpGet("lessons/{id:int}")]
+    [HttpGet("v1/lessons/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -67,8 +66,7 @@ public class LessonController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Teacher")]
-    [HttpPost("lessons")]
+    [HttpPost("v1/lessons")]
     public async Task<IActionResult> PostAsync([FromServices] SpenDataContext context, [FromBody] CreateLessonViewModel model)
     {
 
@@ -115,8 +113,7 @@ public class LessonController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Teacher")]
-    [HttpPost("lessons/video/{id:int}")]
+    [HttpPost("v1/lessons/video/{id:int}")]
     public async Task<IActionResult> AddLessonAsync([FromServices] SpenDataContext context, [FromBody] UploadLessonViewModel model, [FromRoute] int id)
     {
         var fileName = Guid.NewGuid().ToString() + ".mp4";
@@ -154,9 +151,7 @@ public class LessonController : ControllerBase
         return Ok(new ResultViewModel<string>("Video aula atualizada com sucesso!", null));
     }
 
-
-    [Authorize(Roles = "Teacher")]
-    [HttpPut("lessons/{id:int}")]
+    [HttpPut("v1/lessons/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] UpdateLessonViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -184,8 +179,7 @@ public class LessonController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Teacher")]
-    [HttpDelete("course={courseid}/lesson={lessonid:int}")]
+    [HttpDelete("v1/course={courseid}/lesson={lessonid:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int lessonid, [FromRoute] int courseid, [FromServices] SpenDataContext context)
     {
         try
