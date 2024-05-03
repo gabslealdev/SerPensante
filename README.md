@@ -17,7 +17,7 @@ Criar um banco de dados conforme o MER | [BDD](https://github.com/gabslealdev/Se
 Fazer o CRUD da API conforme o banco de dados | [CRUD](https://github.com/gabslealdev/SerPensante/tree/main/SerPensanteApi/Controllers) | ![Static Badge](https://img.shields.io/badge/OK-green)
 Documentar a API e finalizar o backend | SWAGGER | ![Static Badge](https://img.shields.io/badge/OK-green)
 Definir o design da UI | PROTÓTIPO UI | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
-Criar o frontend em Angular | FRONTEND | ![Static Badge](https://img.shields.io/badge/NO-red)
+Criar o frontend em Angular | FRONTEND | ![Static Badge](https://img.shields.io/badge/ONPROGRESS-yellow)
 Publicar o projeto | APP | ![Static Badge](https://img.shields.io/badge/NO-red)
 
 ## REFERÊNCIAS 📚
