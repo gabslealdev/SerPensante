@@ -2623,11 +2623,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj",
+      "projectUniqueName": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
       "projectName": "SerPenApi",
-      "projectPath": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj",
+      "projectPath": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
       "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\obj\\",
+      "outputPath": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",

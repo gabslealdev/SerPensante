@@ -23,3 +23,12 @@ C:\Users\Gabriel\OneDrive\Dev\Portifolio\SerPensanteApi\SerPenApi\obj\Debug\net7
 C:\Users\Gabriel\OneDrive\Dev\Portifolio\SerPensanteApi\SerPenApi\obj\Debug\net7.0\SerPenApi.pdb
 C:\Users\Gabriel\OneDrive\Dev\Portifolio\SerPensanteApi\SerPenApi\obj\Debug\net7.0\SerPenApi.genruntimeconfig.cache
 C:\Users\Gabriel\OneDrive\Dev\Portifolio\SerPensanteApi\SerPenApi\obj\Debug\net7.0\ref\SerPenApi.dll
+C:\Users\Gabriel\Projects\SerPensante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.csproj.AssemblyReference.cache
+C:\Users\Gabriel\Projects\SerPensante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gabriel\Projects\SerPensante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.AssemblyInfoInputs.cache
+C:\Users\Gabriel\Projects\SerPensante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.AssemblyInfo.cs
+C:\Users\Gabriel\Projects\SerPensante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel\Projects\SerPensante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Gabriel\Projects\SerPensante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.dll
+C:\Users\Gabriel\Projects\SerPensante\SerPensanteApi\obj\Debug\net7.0\refint\SerPenApi.dll
+C:\Users\Gabriel\Projects\SerPensante\SerPensanteApi\obj\Debug\net7.0\SerPenApi.pdb

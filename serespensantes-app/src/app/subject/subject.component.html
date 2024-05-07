@@ -1,0 +1,71 @@
+<section class="sciences">
+    <h2>Lista de Cursos</h2>
+    <div class="cards">
+        <div class="card" id="exacts">
+          <fa-icon [icon]="Exacts" class="faIcon"></fa-icon>
+          <p>Exatas</p>
+        </div>
+      <div class="card" id="humans">
+        <fa-icon [icon]="Humans" class="faIcon"></fa-icon>
+        <p>Humanas</p>
+      </div>
+      <div class="card" id="biologicals">
+        <fa-icon [icon]="Biologicals" class="faIcon"></fa-icon>
+        <p>Biologicas</p>
+      </div>
+      <div class="card" id="tech">
+        <fa-icon [icon]="Tech" class="faIcon"></fa-icon>
+        <p>Tecnologia</p>
+      </div>
+    </div>
+    <div class="courseList">
+      @if (activeList) 
+      {
+        <div class="courses exacts" id="exactsCourse">
+          <p>Exatas</p>
+          <ul>
+            @for (item of exactsCourses; track $index) 
+            {
+              <li>{{item}}</li>
+            }
+          </ul>
+        </div>
+      }
+      @if (!activeList) 
+      {
+        <div class="courses humans" id="humansCourse">
+          <p>Humanas</p>
+          <ul>
+            @for (item of humansCourses; track $index) 
+            {
+              <li>{{item}}</li>
+            }
+          </ul>
+        </div>
+      }
+      @if(!activeList)
+      {
+        <div class="courses biologicals" id="biologicalsCourse">
+          <p>Biológicas</p>
+          <ul>
+            @for (item of biologicalsCourses; track $index) 
+            {
+              <li>{{item}}</li>
+            }
+          </ul>
+        </div>
+      }
+      @if (!activeList) 
+      {
+        <div class="courses techs" id="techsCourse">
+          <p>Tecnologicas</p>
+          <ul>
+            @for (item of techCourses; track $index) 
+            {
+              <li>{{item}}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </section>
