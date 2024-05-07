@@ -1,19 +1,11 @@
 {
   "Version": 1,
-  "Hash": "7edRDmyA9X8w/m//VU/japtD1IFQYPka1YOB9IADvaA=",
+  "Hash": "hXQhKYWRw1wZgUHnMNiwLMA7Fsruelrq/w2it2gUWuc=",
   "Source": "SerPenApi",
   "BasePath": "_content/SerPenApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [
-    {
-      "Name": "SerPenApi\\wwwroot",
-      "Source": "SerPenApi",
-      "ContentRoot": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\wwwroot\\",
-      "BasePath": "_content/SerPenApi",
-      "Pattern": "**"
-    }
-  ],
+  "DiscoveryPatterns": [],
   "Assets": []
 }
