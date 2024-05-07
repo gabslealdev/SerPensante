@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj": {}
+    "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj": {
+    "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj",
+        "projectUniqueName": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
         "projectName": "SerPenApi",
-        "projectPath": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\SerPenApi.csproj",
+        "projectPath": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
         "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabriel\\Projects\\SerPesante\\SerPensanteApi\\obj\\",
+        "outputPath": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.13, )"
@@ -69,6 +73,10 @@
             "SecureIdentity": {
               "target": "Package",
               "version": "[1.0.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
             }
           },
           "imports": [

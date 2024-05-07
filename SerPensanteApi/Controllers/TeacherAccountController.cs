@@ -10,19 +10,30 @@ using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 using System.Text.RegularExpressions;
 using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SerPensanteApi.Controllers;
 
 [ApiController]
 public class TeacherAccountController : ControllerBase
 {
-    [HttpGet("account/teachers")]
+    [HttpGet("v1/account/teachers")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
         {
-            var teachers = await context.Teachers.ToListAsync();
-            return Ok(new ResultViewModel<List<Teacher>>(teachers));
+            var teachers = await context
+            .Teachers
+            .AsNoTracking()
+            .Include(x => x.Lessons)
+            .Select( x => new ListTeacherViewModel{
+                Id = x.Id,
+                Name = x.Name,
+                Email = x.Email,
+                Lessons = x.Lessons
+            })
+            .ToListAsync();
+            return Ok(teachers);
         }
         catch
         {
@@ -31,7 +42,7 @@ public class TeacherAccountController : ControllerBase
 
     }
 
-    [HttpGet("account/teachers/{id:int}")]
+    [HttpGet("v1/account/teachers/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -48,14 +59,11 @@ public class TeacherAccountController : ControllerBase
         }
     }
 
-    [HttpPost("account/teachers")]
-    public async Task<IActionResult> PostTeacherAsync([FromBody] EditorUserViewModel model,[FromServices] EmailService emailService, [FromServices] SpenDataContext context)
+    [HttpPost("v1/account/teachers")]
+    public async Task<IActionResult> PostTeacherAsync([FromBody] EditorUserViewModel model,[FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<Teacher>(ModelState.GetErrors()));
-
-        var password = PasswordGenerator.Generate(length: 16, includeSpecialChars: true, upperCase: false);
-
 
         var teacher = new Teacher
         {
@@ -63,7 +71,7 @@ public class TeacherAccountController : ControllerBase
             BirthDate = model.BirthDate,
             Contact = model.Contact,
             Email = model.Email,
-            PasswordHash = PasswordHasher.Hash(password),
+            PasswordHash = PasswordHasher.Hash(model.Password),
             Image = "src/profile/teacher/images",
             Role = Role.Teacher
         };
@@ -73,12 +81,11 @@ public class TeacherAccountController : ControllerBase
             await context.AddAsync(teacher);
             await context.SaveChangesAsync();
 
-            emailService.Send(teacher.Name, teacher.Email, "Bem-vindo a plataforma de estudo Seres Pensantes", $"Sua senha é <strong>{password}</strong>");
 
             return Created($"teacher/{teacher.Id}", new ResultViewModel<dynamic>(new
             {
                 teacher = teacher.Email,
-                password,
+                model.Password,
                 teacher.Role
             }));
         }
@@ -92,8 +99,7 @@ public class TeacherAccountController : ControllerBase
         }
     }
 
-
-    [HttpPost("account/teachers/login")]
+    [HttpPost("v1/account/teachers/login")]
     public async Task<IActionResult> TeacherLogin([FromBody] LoginViewModel model, [FromServices] SpenDataContext context, [FromServices] TokenService tokenService)
     {
         if (!ModelState.IsValid)
@@ -121,7 +127,7 @@ public class TeacherAccountController : ControllerBase
 
     }
 
-    [HttpPut("account/teachers/update/{id:int}")]
+    [HttpPut("v1/account/teachers/update/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] EditorUserViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -155,8 +161,7 @@ public class TeacherAccountController : ControllerBase
         }
     }
 
-
-    [HttpDelete("account/teachers/remove/{id:int}")]
+    [HttpDelete("v1/account/teachers/remove/{id:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -180,7 +185,7 @@ public class TeacherAccountController : ControllerBase
 
     }
 
-    [HttpPost("account/teachers/upload-image")]
+    [HttpPost("v1/account/teachers/upload-image")]
     public async Task<IActionResult> UploadImage([FromBody] UploadImageViewModel model, [FromServices] SpenDataContext context)
     {
         var fileName = Guid.NewGuid().ToString() + ".jpg";
@@ -202,7 +207,7 @@ public class TeacherAccountController : ControllerBase
         {
             return StatusCode(500, new ResultViewModel<string>("Falha interna no servidor"));
         }
-
+        
         var teacher = await context.Teachers.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);
 
         if (teacher == null)

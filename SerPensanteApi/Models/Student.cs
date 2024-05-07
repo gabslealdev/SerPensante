@@ -4,5 +4,5 @@ namespace SerPensanteApi.Models;
 
 public class Student : User
 {
-    public ICollection<StudentCourse> StudentCourses { get; set; }
+    public List<StudentCourse> StudentCourses { get; set; }
 }

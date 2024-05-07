@@ -5,6 +5,7 @@ using SerPensanteApi.ViewModels;
 using SerPensanteApi.ViewModels.Courses;
 using SerPensanteApi.Data;
 using SerPensanteApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SerPenApi.Controllers;
 
@@ -12,13 +13,34 @@ namespace SerPenApi.Controllers;
 public class CourseController : ControllerBase
 {
 
-    [HttpGet("courses")]
-    public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
+    [HttpGet("v1/courses")]
+    public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context,[FromQuery] int pageSize = 25, [FromQuery] int page = 0)
     {
         try
         {
-            var courses = await context.Courses.ToListAsync();
-            return Ok(new ResultViewModel<List<Course>>(courses));
+            var count = await context.Courses.AsNoTracking().CountAsync();
+            var courses = await context
+            .Courses
+            .AsNoTracking()
+            .Include(x => x.Lessons)
+            .ThenInclude(x => x.Teacher)
+            .Select(x => new ListCoursesViewModel{
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                CreatedAt = x.CreatedAt,
+                Lessons = x.Lessons
+            })
+            .Skip(page * pageSize)
+            .Take(pageSize)
+            .OrderByDescending(x => x.CreatedAt)
+            .ToListAsync();
+            return Ok(new ResultViewModel<dynamic>(new {
+                total = count,
+                page,
+                pageSize,
+                courses
+            }));
         }
         catch
         {
@@ -26,7 +48,14 @@ public class CourseController : ControllerBase
         }
     }
 
-    [HttpGet("courses/{id:int}")]
+    [HttpGet("v1/courses/subject/{subject}")]
+    public async Task<IActionResult> GetSubjectsCourseAsync([FromServices] SpenDataContext context, [FromRoute] string subject)
+    {
+        var courses = await context.Courses.Where(x => x.Subject.Name == subject).AsNoTracking().ToListAsync();
+        return Ok(new ResultViewModel<List<Course>>(courses));
+    }
+
+    [HttpGet("v1/courses/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -44,7 +73,7 @@ public class CourseController : ControllerBase
         }
     }
 
-    [HttpPost("courses")]
+    [HttpPost("v1/courses")]
     public async Task<IActionResult> PostAsync([FromBody] EditorCourseViewModel model, [FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
@@ -56,7 +85,7 @@ public class CourseController : ControllerBase
             if (materia == null)
                 return BadRequest(new ResultViewModel<Subject>("Não foi possivel encontrar a materia desse Course"));
 
-            var _duration = new DateTime(2024, 01, 01, 00, 00, 00);
+            var _duration = new DateTime(1900, 01, 01, 00, 00, 00);
             var course = new Course
             {
                 Name = model.Name,
@@ -83,7 +112,7 @@ public class CourseController : ControllerBase
         }
     }
 
-    [HttpPut("courses/{id:int}")]
+    [HttpPut("v1/courses/{id:int}")]
     public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] EditorCourseViewModel model, [FromServices] SpenDataContext context)
     {
         try
@@ -114,7 +143,7 @@ public class CourseController : ControllerBase
         }
     }
 
-    [HttpDelete("courses/{id:int}")]
+    [HttpDelete("v1/courses/{id:int}")] 
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -133,5 +162,40 @@ public class CourseController : ControllerBase
         {
             return StatusCode(500, new ResultViewModel<Course>("Falha interna do servidor"));
         }
+    }
+
+    [Authorize(Roles = "User")]
+    [HttpPost("v1/courses/enrollment/{id:int}")]
+    public async Task<IActionResult> EnrollmentCourse([FromServices] SpenDataContext context, [FromRoute] int id )
+    {
+        var course = await context.Courses.FirstOrDefaultAsync(x => x.Id == id);
+        var student = await context.Students.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);
+
+        if (student == null || course == null)
+            return BadRequest();
+
+        
+        var studentCourse = new StudentCourse 
+        {
+            Student = student,
+            StudentId = student.Id,
+            Course = course,
+            CourseId = course.Id,
+            Progress = 0,
+            StartDate = DateTime.UtcNow,
+            EndDate = DateTime.UtcNow,
+        };
+
+        try
+        {
+            await context.AddAsync(studentCourse);
+            await context.SaveChangesAsync();
+
+            return Ok(new ResultViewModel<dynamic>(studentCourse)); 
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new ResultViewModel<dynamic>(ex));
+        }          
     }
 }

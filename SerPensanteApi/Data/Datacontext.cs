@@ -7,6 +7,9 @@ namespace SerPensanteApi.Data;
 
 public class SpenDataContext : DbContext
 {
+    public SpenDataContext(DbContextOptions<SpenDataContext> options) : base(options)
+    {
+    }
     public DbSet<Subject> Subjects { get; set; }
     public DbSet<Student> Students { get; set; }
     public DbSet<Lesson> Lessons { get; set; }
@@ -14,9 +17,6 @@ public class SpenDataContext : DbContext
     public DbSet<Teacher> Teachers { get; set; }
     public DbSet<Administrator> Administrators { get; set; }
     public DbSet<StudentCourse> StudentSCourses { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-    => options.UseSqlServer("Server=localhost,1433;Database=SerPenDB2;User ID=sa;Password=1q2w3e4r@#$;trustservercertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -10,13 +10,15 @@ using SerPensanteApi.Data;
 using SerPensanteApi.Models;
 using System.Text.RegularExpressions;
 using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SerPensanteApi.Controllers;
+
 
 [ApiController]
 public class AccountController : ControllerBase
 {
-    [HttpGet("students")]
+    [HttpGet("v1/account/students")]
     public async Task<IActionResult> GetAsync([FromServices] SpenDataContext context)
     {
         try
@@ -30,7 +32,7 @@ public class AccountController : ControllerBase
         }
     }
 
-    [HttpGet("account/students/{id:int}")]
+    [HttpGet("v1/account/students/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -50,14 +52,12 @@ public class AccountController : ControllerBase
             return StatusCode(500, new ResultViewModel<Student>("Falha interna no servidor"));
         }
     }
-    [HttpPost("account/students")]
+    [AllowAnonymous]
+    [HttpPost("v1/account/students")]
     public async Task<IActionResult> PostStudentsAsync([FromBody] EditorUserViewModel model, [FromServices] SpenDataContext context)
     {
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<Student>(ModelState.GetErrors()));
-
-        var password = PasswordGenerator.Generate(length: 16, includeSpecialChars: true, upperCase: false);
-
 
         var student = new Student
         {
@@ -65,7 +65,7 @@ public class AccountController : ControllerBase
             BirthDate = model.BirthDate,
             Contact = model.Contact,
             Email = model.Email,
-            PasswordHash = PasswordHasher.Hash(password),
+            PasswordHash = PasswordHasher.Hash(model.Password),
             Image = "",
             Role = Role.Student
         };
@@ -74,15 +74,11 @@ public class AccountController : ControllerBase
             await context.AddAsync(student);
             context.SaveChanges();
 
-            EmailService emailService = new EmailService();
-
-            emailService.Send(student.Name,student.Email, "Bem-vindo a plataforma de estudo Seres Pensantes", $"Sua senha é <strong>{password}</strong>");
-
             return Created($"student/{student.Id}", new ResultViewModel<dynamic>(new
             {
                 student = student.Email,
                 student.Role,
-                password
+                model.Password
             }));
         }
         catch (DbUpdateException)
@@ -95,8 +91,8 @@ public class AccountController : ControllerBase
         }
     }
 
-
-    [HttpPost("account/students/login")]
+    [AllowAnonymous]
+    [HttpPost("v1/account/students/login")]
     public async Task<IActionResult> StudentLogin([FromBody] LoginViewModel model, [FromServices] SpenDataContext context, [FromServices] TokenService tokenService)
     {
         if (!ModelState.IsValid)
@@ -123,8 +119,8 @@ public class AccountController : ControllerBase
         }
 
     }
-
-    [HttpPut("account/students/update/{id:int}")]
+    [Authorize(Roles = "Student")]
+    [HttpPut("v1/account/students/update/{id:int}")]
     public async Task<IActionResult> PutAsync([FromBody] EditorUserViewModel model, [FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -157,7 +153,7 @@ public class AccountController : ControllerBase
         }
     }
 
-    [HttpDelete("account/students/remove/{id:int}")]
+    [HttpDelete("v1/account/students/remove/{id:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] SpenDataContext context)
     {
         try
@@ -181,8 +177,8 @@ public class AccountController : ControllerBase
         }
 
     }
-    
-    [HttpPost("accounts/students/upload-image")]
+    [Authorize(Roles = "Student")]
+    [HttpPost("v1/accounts/students/upload-image")]
     public async Task<IActionResult> UploadImage([FromBody] UploadImageViewModel model, [FromServices] SpenDataContext context)
     {
         var fileName = Guid.NewGuid().ToString() + ".jpg";
@@ -208,7 +204,7 @@ public class AccountController : ControllerBase
         var student = await context.Students.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);
 
         if (student == null)
-            return BadRequest(new ResultViewModel<string>("Usuário não encontrado"));
+            return NotFound(new ResultViewModel<string>("Usuário não encontrado"));
 
         student.Image = blobclient.Uri.AbsoluteUri;
         try
