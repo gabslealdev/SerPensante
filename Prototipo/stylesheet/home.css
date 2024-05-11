@@ -240,6 +240,18 @@ p {
     visibility: visible;
 }
 
+.s-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.s-item{
+    background-color: #D35F5F;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 3px
+}
+
 .footer .footer-links {
     display: flex;
     justify-content: center;
