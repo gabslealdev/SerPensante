@@ -1,27 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSquareRootAlt } from '@fortawesome/free-solid-svg-icons';
 import { faAtlas } from '@fortawesome/free-solid-svg-icons';
 import { faMicroscope } from '@fortawesome/free-solid-svg-icons';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from '../../models/subject.model';
+import { SubjectService } from './subject.service';
+import {HttpClientModule } from '@angular/common/http';
+
+
+
 
 @Component({
   selector: 'srp-subject',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, HttpClientModule],
   templateUrl: './subject.component.html',
   styleUrl: './subject.component.css'
 })
-export class SubjectComponent {
-  Exacts = faSquareRootAlt
-  Humans = faAtlas
-  Biologicals = faMicroscope
-  Tech = faCode
+export class SubjectComponent implements OnInit {
+  public Exacts = faSquareRootAlt
+  public Humans = faAtlas
+  public Biologicals = faMicroscope
+  public Tech = faCode
   
-  public activeList: boolean = true
-  public exactsCourses: string[] = ["Física - I", "Física - II", "Física - III", "Matemática Aplicada", "Geometria Analítica"]
-  public humansCourses: string[] = ["Historia - I", "Historia - II", "Historia - III", "Revisão de historia, fundamental", "Revisão de geografica, fundamental"] 
-  public biologicalsCourses: string[] = ["Biologia - I", "Biologia - II", "Biologia - III"]
-  public techCourses: string[] = ["Lógica de programação", "Linguagem de Programação - Python", "Linguagem de Programação - C#", "Linguagem de Programação - JavaScript"]
+  public subjects: Subject[] = []
+
+  constructor(private service: SubjectService) { }
+
+  ngOnInit(): void {
+     this.service.getSubjects().subscribe(subject => this.subjects = subject)
+  }
+
 }
 

@@ -1,0 +1,1 @@
+export const SPAPI = 'https://localhost:7001'
