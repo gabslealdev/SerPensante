@@ -30,6 +30,19 @@ public class SubjectController : ControllerBase
             return StatusCode(500, new ResultViewModel<Subject>("ERMT001 - Falha interna no servior"));
         }
     }
+    [HttpGet("v1/subject/science")]
+    public async Task<IActionResult>GetByScienceAsync([FromServices] SpenDataContext context, [FromQuery] string science)
+    {
+        try
+        {
+            var subject = await context.Subjects.Where(x => x.Science == science).ToListAsync();
+            return Ok(new ResultViewModel<List<Subject>>(subject));
+        }
+        catch
+        {
+            return StatusCode(500, new ResultViewModel<Subject>("ERMT001 - Falha interna no servior"));
+        }
+    }
 
     [HttpGet("v1/subjects/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] SpenDataContext context)
