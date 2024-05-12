@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 ConfigureAuthentication(builder);
 ConfigureMvc(builder);
 ConfigureService(builder);
+ConfiguresCors(builder);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -22,11 +23,13 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors();
 app.MapControllers();
 app.UseStaticFiles();
+
 app.UseResponseCompression();
 if (app.Environment.IsDevelopment())
 {
@@ -85,5 +88,16 @@ void ConfigureService(WebApplicationBuilder builder)
     builder.Services.AddDbContext<SpenDataContext>(options => options.UseSqlServer(connectionString));
     builder.Services.AddTransient<TokenService>();
 }
+
+ void ConfiguresCors(WebApplicationBuilder builder)
+ {
+    builder.Services.AddCors(options => 
+    options.AddDefaultPolicy(policy => {
+        policy
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    }));
+ }
 
 
