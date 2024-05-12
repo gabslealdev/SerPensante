@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj": {}
+    "C:\\Users\\Gabriel\\serespensantes-proj\\SerPensante\\SerPensanteApi\\SerPenApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj": {
+    "C:\\Users\\Gabriel\\serespensantes-proj\\SerPensante\\SerPensanteApi\\SerPenApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
+        "projectUniqueName": "C:\\Users\\Gabriel\\serespensantes-proj\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
         "projectName": "SerPenApi",
-        "projectPath": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
+        "projectPath": "C:\\Users\\Gabriel\\serespensantes-proj\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
         "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\obj\\",
+        "outputPath": "C:\\Users\\Gabriel\\serespensantes-proj\\SerPensante\\SerPensanteApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,0 +1,262 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #241C1C;
+}
+
+.scrollTop {
+    position: sticky;
+    top: 0;
+    opacity: 0.01;
+    transition: 800ms;
+}
+
+.scrollTop:hover {
+    opacity: 1;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 40px;
+    background-color: #F4D7D7;
+    padding: 7px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.login a {
+    text-decoration: none;
+    color: #241C1C;
+    margin-right: 3px;
+}
+
+.login span {
+    color: #241C1C;
+}
+
+.login:hover span,
+.login:hover a {
+    color: #D35F5F;
+}
+
+.navigation {
+    margin-right: 160px;
+}
+
+.navigation .nav-links {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links .nav-link {
+    margin: 15px;
+
+}
+
+.nav-link a {
+    font-size: 15px;
+    text-decoration: none;
+    color: #F4D7D7;
+}
+
+.nav-link a:hover {
+    color: #D35F5F;
+    transition: 1s;
+}
+
+.section-search {
+    height: 23rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #241C1C;
+    padding: 90px;
+    background-image: url("../src/bkg2.png");
+    background-repeat: no-repeat;
+}
+
+.search-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+}
+
+.slider {
+    animation-duration: 1s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 200%;
+        opacity: 0;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.search-text h1,
+p {
+    color: #F4D7D7;
+    font-size: 35px;
+}
+
+.search-text p {
+    margin-top: 1em;
+}
+
+.RegistrationLink {
+    text-decoration: none;
+    color: #D35F5F;
+}
+
+.RegistrationLink:hover {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.content-search {
+    margin-top: 80px;
+    margin-bottom: 150px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.content-search form {
+    display: flex;
+}
+
+.searchBar {
+    background-color: #241C1C;
+    border: solid 3px #F4D7D7;
+    color: #F4D7D7;
+    font-size: 16px;
+    padding: 15px;
+    width: 20rem;
+}
+
+.searchBar::placeholder {
+    color: #F4D7D7;
+    opacity: 0.3;
+    font-size: 15px;
+}
+
+.searchBar:focus {
+    border: solid 4px #D35F5F;
+    outline: none;
+}
+
+.searchBut {
+    background-color: #F4D7D7;
+    border: solid 3px #F4D7D7;
+    color: #F4D7D7;
+    padding: 10px;
+}
+
+.searchBut span {
+    color: #D35F5F;
+    font-size: 30px;
+}
+
+.searchBut:hover {
+    border: solid 3px #D35F5F;
+}
+
+.section-courses {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-courses h2 {
+    color: #F4D7D7;
+    font-size: 30px;
+    font-weight: 300;
+    height: 10vh;
+}
+
+.boxes {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;    
+}
+.boxes a{
+    text-decoration: none;
+}
+
+.boxes p,
+.box i {
+    color: #F4D7D7;
+    text-decoration: none;
+}
+
+.box {
+    border: solid 3px #F4D7D7;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    width: 15vw;
+    height: 45vh;
+}
+.box i {
+    font-size: 70px;
+}
+
+.box:hover {
+    border: solid 3px #F4D7D7;
+    background-color: #F4D7D7;
+    transition: 0.5s;
+}
+.box:hover p,
+.box:hover i{
+    color: #241C1C;
+    transition: 0.7s;
+}
+.courseList{
+    width: 100%;
+    height: 35%;
+    padding: 10px;
+}
+.courses{
+    width: 100%;
+    height: 35%;
+    visibility: hidden;
+    position: absolute;
+    background-color: #F4D7D7;
+}
+.currentScience{
+    visibility: visible;
+}
+
+.s-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.s-item{
+    background-color: #D35F5F;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 3px
+}
+
+.footer .footer-links {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-links .footer-link a {
+    margin: 10px;
+}

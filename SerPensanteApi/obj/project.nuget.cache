@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "erDnkzLxCgq8pL8Jr0OoybFNEQtmUTyuhk1gWh1Iy7O/dthUZXP0HaBPhtVdM6/h2CgqbaVPuNMzgfNlAJ2A2g==",
+  "dgSpecHash": "HBSXSGSFOSj/U57MKDeeSfTugRBfiskLgHvbBEXXQ96wzH3wz0m/U3W1fBX/3frGel1/2n2lY3NCSD47GWTQsQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gabriel\\Projects\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
+  "projectFilePath": "C:\\Users\\Gabriel\\serespensantes-proj\\SerPensante\\SerPensanteApi\\SerPenApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gabriel\\.nuget\\packages\\azure.core\\1.36.0\\azure.core.1.36.0.nupkg.sha512",
     "C:\\Users\\Gabriel\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
