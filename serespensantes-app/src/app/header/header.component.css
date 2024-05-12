@@ -1,0 +1,63 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #241C1C;
+    font-family: 'Montserrat';
+}
+
+.scrollTop {
+    position: sticky;
+    top: 0;
+    opacity: 0.01;
+    transition: 700ms;
+}
+
+.scrollTop:hover {
+    opacity: 1;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.login button {
+    margin-right: 40px;
+    background-color: #F4D7D7;
+    padding: 7px;
+    font-size: 15px;
+    color: #241C1C;
+    margin-right: 3px;
+    border: none;
+}
+.login button:hover{
+    color: #D35F5F;
+}
+
+.navigation {
+    margin-right: 160px;
+}
+
+.navigation .nav-links {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links .nav-link {
+    margin: 15px;
+
+}
+
+.nav-link a {
+    font-size: 15px;
+    text-decoration: none;
+    color: #F4D7D7;
+}
+
+.nav-link a:hover {
+    color: #D35F5F;
+    transition: 1s;
+}
